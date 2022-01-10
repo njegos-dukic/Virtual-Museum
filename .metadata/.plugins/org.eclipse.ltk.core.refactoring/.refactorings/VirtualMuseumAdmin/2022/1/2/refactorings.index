@@ -1,0 +1,37 @@
+1641234288867	Move 'Login.jsp' to 'pages'
+1641235294475	Rename resource 'museum.png'
+1641242473951	Rename resource 'museum-admin-logo.png'
+1641250837901	Rename resource 'Login.jsp'
+1641297157285	Rename type 'MuseumDAO'
+1641297173928	Rename type 'MusemDTO'
+1641298014368	Rename local variable 'book'
+1641298088181	Rename package 'org.unibl.etf.virtualmuseummain'
+1641308726041	Rename resource 'StartPage.jsp'
+1641312994971	Rename resource 'AddMuseum.jsp'
+1641312999645	Rename resource 'EditMuseum.jsp'
+1641315084938	Rename resource 'Edit.jsp'
+1641322590149	Rename resource 'Edit.css'
+1641322613913	Delete element
+1641481015817	Delete element
+1641483312956	Delete element
+1641488928661	Rename resource 'pages'
+1641494426485	Delete element
+1641494514812	Delete elements
+1641500360214	Delete element
+1641500375562	Rename resource 'location-pin (2).png'
+1641500393473	Delete elements
+1641500397034	Rename resource 'edit(2).png'
+1641500402092	Rename resource 'delete.png'
+1641500449002	Delete element
+1641500452932	Rename resource 'pen.png'
+1641500533776	Delete element
+1641500539974	Rename resource 'edit(3).png'
+1641500587734	Delete element
+1641500591345	Rename resource 'delete(1).png'
+1641508559211	Copy file
+1641509645493	Delete element
+1641509648263	Rename resource 'logout.png'
+1641509686869	Delete element
+1641509689805	Rename resource 'logout(1).png'
+1641510019567	Delete element
+1641510023202	Rename resource 'power.png'

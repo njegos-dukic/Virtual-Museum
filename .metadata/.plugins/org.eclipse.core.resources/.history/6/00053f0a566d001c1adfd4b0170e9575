@@ -1,0 +1,5 @@
+package org.unibl.etf.virtualmuseum.services.utils;
+
+public class ServiceUtil {
+
+}

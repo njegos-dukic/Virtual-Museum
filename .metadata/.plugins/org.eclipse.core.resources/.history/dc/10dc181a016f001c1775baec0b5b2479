@@ -1,0 +1,5 @@
+package org.unibl.etf.virtualmuseum.beans;
+
+public class UserBean {
+
+}

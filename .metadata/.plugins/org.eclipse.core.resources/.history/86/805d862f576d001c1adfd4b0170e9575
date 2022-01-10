@@ -1,0 +1,135 @@
+package org.unibl.etf.virtualmuseum.services;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import org.unibl.etf.virtualmuseum.entities.MuseumEntity;
+import org.unibl.etf.virtualmuseum.services.utils.ConnectionPool;
+import org.unibl.etf.virtualmuseum.services.utils.ServiceUtil;
+
+public class MuseumService {
+	
+	private static ConnectionPool connectionPool = ConnectionPool.getConnectionPool();
+	private static final String SQL_SELECT_ALL = "SELECT * FROM MUSEUM";
+	private static final String SQL_SELECT_ONE = "SELECT * FROM MUSEUM WHERE id = ?";
+	private static final String SQL_INSERT = "INSERT INTO MUSEUM (name, address, phone, city, country, type, lat, lng) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String SQL_UPDATE = "UPDATE MUSEUM SET name = ?, address = ?, phone = ?, city = ?, country = ?, type = ?, lat = ?, lng = ? WHERE id = ?";
+
+	
+	public static ArrayList<MuseumEntity> selectAll(){
+		ArrayList<MuseumEntity> retVal = new ArrayList<MuseumEntity>();
+		Connection connection = null;
+		ResultSet rs = null;
+		Object values[] = {};
+		try {
+			connection = connectionPool.checkOut();
+			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection,
+					SQL_SELECT_ALL, false, values);
+			rs = pstmt.executeQuery();
+			while (rs.next()){
+				retVal.add(new MuseumEntity(rs.getInt("id"), rs.getString("name"), rs.getString("address"), rs.getString("phone"), rs.getString("city"), rs.getString("country"), rs.getString("type"), rs.getDouble("lat"), rs.getDouble("lng")));
+			}
+			pstmt.close();
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		} finally {
+			connectionPool.checkIn(connection);
+		}
+		return retVal;
+	}
+	
+	public static MuseumEntity selectOne(MuseumEntity museum){
+		MuseumEntity retVal = null;
+		Connection connection = null;
+		ResultSet rs = null;
+		Object values[] = {museum.getId()};
+		try {
+			connection = connectionPool.checkOut();
+			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection,
+					SQL_SELECT_ONE, false, values);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				retVal = new MuseumEntity(rs.getInt("id"), rs.getString("name"), rs.getString("address"), rs.getString("phone"), rs.getString("city"), rs.getString("country"), rs.getString("type"), rs.getDouble("lat"), rs.getDouble("lng"));
+			}
+			pstmt.close();
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		} finally {
+			connectionPool.checkIn(connection);
+		}
+		return retVal;
+	}
+	
+	public static MuseumEntity selectOneById(int id){
+		MuseumEntity retVal = null;
+		Connection connection = null;
+		ResultSet rs = null;
+		Object values[] = {id};
+		try {
+			connection = connectionPool.checkOut();
+			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection,
+					SQL_SELECT_ONE, false, values);
+			rs = pstmt.executeQuery();
+			while (rs.next()){
+				retVal = new MuseumEntity(rs.getInt("id"), rs.getString("name"), rs.getString("address"), rs.getString("phone"), rs.getString("city"), rs.getString("country"), rs.getString("type"), rs.getDouble("lat"), rs.getDouble("lng"));
+			}
+			pstmt.close();
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		} finally {
+			connectionPool.checkIn(connection);
+		}
+		return retVal;
+	}
+
+//	public static boolean insert(MuseumEntity book) {
+//		boolean retVal = false;
+//		Connection connection = null;
+//		ResultSet generatedKeys = null;
+//		Object values[] = { book.getAuthor(), book.getTitle(), book.getPublisher(), book.getYear(), book.getIsbn()};
+//		try {
+//			connection = connectionPool.checkOut();
+//			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection, SQL_INSERT, true,
+//					values);
+//			int affectedRows = pstmt.executeUpdate();
+//			if (affectedRows == 0)
+//				retVal = false;
+//			else
+//				retVal = true;
+//			generatedKeys = pstmt.getGeneratedKeys();
+//			if (generatedKeys.next())
+//				book.setId(generatedKeys.getInt(1));
+//			pstmt.close();
+//		} catch (SQLException e) {
+//			retVal = false;
+//		} finally {
+//			connectionPool.checkIn(connection);
+//		}
+//		return retVal;
+//	}
+//
+//	public static boolean update(Book book) {
+//		boolean retVal = false;
+//		Connection connection = null;
+//		Object values[] = { book.getAuthor(), book.getTitle(), book.getPublisher(), book.getYear(), book.getIsbn(), book.getId()};
+//		try {
+//			connection = connectionPool.checkOut();
+//			PreparedStatement pstmt = DAOUtil.prepareStatement(connection, SQL_UPDATE, false,
+//					values);
+//			int affectedRows = pstmt.executeUpdate();
+//			if (affectedRows == 0)
+//				retVal = false;
+//			else
+//				retVal = true;
+//			pstmt.close();
+//		} catch (SQLException e) {
+//			retVal = false;
+//		} finally {
+//			connectionPool.checkIn(connection);
+//		}
+//		return retVal;
+//	}
+}

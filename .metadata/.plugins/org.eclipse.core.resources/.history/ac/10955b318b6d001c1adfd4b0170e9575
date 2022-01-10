@@ -1,0 +1,40 @@
+.menu-container {
+    margin-top: 1%;
+    display: flex;
+    flex-direction: row;
+}
+
+.new-museum-container {
+	margin-top: 1%;
+	margin-left: 2px;
+	margin-right: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 15%;
+    font-size: min(calc(8px + 2vw), 25px);
+    font-family: 'Bebas Neue', cursive;
+    background-color: #063175;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33.33%;
+    font-size: min(calc(8px + 2vw), 25px);
+    font-family: 'Bebas Neue', cursive;
+    background-color: #0ec5aa;
+    border-radius: 10px;
+}
+
+.right-margin-3 {
+    margin-right: 3px;
+}
+
+.left-margin-3 {
+    margin-left: 3px;
+}

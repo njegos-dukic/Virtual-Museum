@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Virtual Museum Admin</title>
+		<link href="../css/Header.css" rel="stylesheet" type="text/css">
+		<link rel="icon" href="../images/museum-admin-logo.png">
+	</head>
+	
+	<body>
+		<div class="header-container">
+			<img class="header-logo"  src="../images/musem-admin-logo.png" />
+			<span class="header-title">VIRTUAL MUSEUM ADMINISTRATION</span>
+			<button class="header-login-button">Log In</button>
+		</div>
