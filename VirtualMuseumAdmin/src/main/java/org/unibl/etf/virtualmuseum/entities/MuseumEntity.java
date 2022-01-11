@@ -9,9 +9,10 @@ public class MuseumEntity {
 	private String city;
 	private String country;
 	private String type;
-	private String maps;
+	private double lat;
+	private double lng;
 	
-	public MuseumEntity(int id, String name, String address, String phone, String city, String country, String type, String maps) {
+	public MuseumEntity(int id, String name, String address, String phone, String city, String country, String type, double lat, double lng) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
@@ -19,7 +20,8 @@ public class MuseumEntity {
 		this.city = city;
 		this.country = country;
 		this.type = type;
-		this.maps = maps;
+		this.lat = lat;
+		this.lng = lng;
 	}
 
 	public int getId() {
@@ -78,17 +80,18 @@ public class MuseumEntity {
 		this.type = type;
 	}
 	
-	public String getMaps() {
-		return maps;
+	public double getLat() {
+		return lat;
 	}
 	
-	public void setMaps(String maps) {
-		this.maps = maps;
+	public void setLat(double lat) {
+		this.lat = lat;
 	}
-
-	@Override
-	public String toString() {
-		return "MuseumEntity [id=" + id + ", name=" + name + ", address=" + address + ", phone=" + phone + ", city="
-				+ city + ", country=" + country + ", type=" + type + ", maps=" + maps + "]";
+	public double getLng() {
+		return lng;
+	}
+	
+	public void setLng(double lng) {
+		this.lng = lng;
 	}
 }

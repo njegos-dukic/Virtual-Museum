@@ -8,12 +8,6 @@
 </jsp:useBean>  
  
 <%
-	if (request.getParameter("username") != null && request.getParameter("password") != null) {
-		user.setUsername(request.getParameter("username"));
-		user.setPassword(request.getParameter("password"));
-		user.login();
-	}
-
 	if (!user.isLoggedIn()) {
 		response.sendRedirect("Login.jsp");
 	}
@@ -25,8 +19,9 @@
 	}
 	
 	String id = request.getParameter("delete-id");
+	boolean deleteStatus = true;
     if (id != null) {
-    	UserService.delete(Integer.parseInt(id));
+    	deleteStatus = UserService.delete(Integer.parseInt(id));
     }
     
     String toggleAdmin = request.getParameter("toggle-admin-id");
@@ -189,7 +184,7 @@
 			        <div style="width: 6.66%; justify-content: center; " class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
 			        	<form style="height: min(calc(8px + 1.5vw), 16px);" action="#" method=post>
 			        		<input type="hidden" name="toggle-reset-id" value="<%= ue.getId() %>" />
-			        		<input type="image" style="height: min(calc(8px + 1.5vw), 16px);" src="../images/unlocked.png" />
+			        		<input type="image" style="height: min(calc(8px + 1.5vw), 16px);" src="../images/<%= ue.isPasswordReset() ? "unlocked.png" : "locked.png" %>" />
 			        	</form>
 			        </div>
 			        <div style="width: 6.66%; justify-content: center; overflow: hidden; height: min(calc(8px + 1.5vw), 16px);" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
@@ -211,5 +206,8 @@
 			    </div>
 			<% } %>
 		</div>
+		<% if(!deleteStatus) { %>
+			<script>alert("Can't delete user!")</script>
+		<% } %>	
 	</body>
 </html>

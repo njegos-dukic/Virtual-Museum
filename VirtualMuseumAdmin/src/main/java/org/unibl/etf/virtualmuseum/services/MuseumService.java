@@ -15,8 +15,10 @@ public class MuseumService {
 	private static ConnectionPool connectionPool = ConnectionPool.getConnectionPool();
 	private static final String SQL_SELECT_ALL = "SELECT * FROM MUSEUM";
 	private static final String SQL_SELECT_ONE = "SELECT * FROM MUSEUM WHERE id = ?";
-	private static final String SQL_INSERT = "INSERT INTO MUSEUM (name, address, phone, city, country, type, maps) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	private static final String SQL_UPDATE = "UPDATE MUSEUM SET name = ?, address = ?, phone = ?, city = ?, country = ?, type = ?, maps = ? WHERE id = ?";
+	private static final String SQL_INSERT = "INSERT INTO MUSEUM (name, address, phone, city, country, type, lat, lng) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String SQL_UPDATE = "UPDATE MUSEUM SET name = ?, address = ?, phone = ?, city = ?, country = ?, type = ? WHERE id = ?";
+	private static final String SQL_UPDATE_LOCATION = "UPDATE MUSEUM SET lat = ?, lng = ? WHERE id = ?";
+	
 	private static final String SQL_DELETE = "DELETE FROM MUSEUM WHERE id = ?";
 	
 	public static ArrayList<MuseumEntity> selectAll(){
@@ -30,7 +32,7 @@ public class MuseumService {
 					SQL_SELECT_ALL, false, values);
 			rs = pstmt.executeQuery();
 			while (rs.next()){
-				retVal.add(new MuseumEntity(rs.getInt("id"), rs.getString("name"), rs.getString("address"), rs.getString("phone"), rs.getString("city"), rs.getString("country"), rs.getString("type"), rs.getString("maps")));
+				retVal.add(new MuseumEntity(rs.getInt("id"), rs.getString("name"), rs.getString("address"), rs.getString("phone"), rs.getString("city"), rs.getString("country"), rs.getString("type"), rs.getFloat("lat"), rs.getFloat("lng")));
 			}
 			pstmt.close();
 		} catch (SQLException exp) {
@@ -52,7 +54,7 @@ public class MuseumService {
 					SQL_SELECT_ONE, false, values);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				retVal = new MuseumEntity(rs.getInt("id"), rs.getString("name"), rs.getString("address"), rs.getString("phone"), rs.getString("city"), rs.getString("country"), rs.getString("type"), rs.getString("maps"));
+				retVal = new MuseumEntity(rs.getInt("id"), rs.getString("name"), rs.getString("address"), rs.getString("phone"), rs.getString("city"), rs.getString("country"), rs.getString("type"), rs.getFloat("lat"), rs.getFloat("lng"));
 			}
 			pstmt.close();
 		} catch (SQLException exp) {
@@ -73,7 +75,7 @@ public class MuseumService {
 			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection, SQL_SELECT_ONE, false, values);
 			rs = pstmt.executeQuery();
 			while (rs.next()){
-				retVal = new MuseumEntity(rs.getInt("id"), rs.getString("name"), rs.getString("address"), rs.getString("phone"), rs.getString("city"), rs.getString("country"), rs.getString("type"), rs.getString("maps"));
+				retVal = new MuseumEntity(rs.getInt("id"), rs.getString("name"), rs.getString("address"), rs.getString("phone"), rs.getString("city"), rs.getString("country"), rs.getString("type"), rs.getFloat("lat"), rs.getFloat("lng"));
 			}
 			pstmt.close();
 		} catch (SQLException exp) {
@@ -88,7 +90,7 @@ public class MuseumService {
 		boolean retVal = false;
 		Connection connection = null;
 		ResultSet generatedKeys = null;
-		Object values[] = { museum.getName(), museum.getAddress(), museum.getPhone(), museum.getCity(), museum.getCountry(), museum.getType(), museum.getMaps() };
+		Object values[] = { museum.getName(), museum.getAddress(), museum.getPhone(), museum.getCity(), museum.getCountry(), museum.getType(), museum.getLat(), museum.getLng() };
 		try {
 			connection = connectionPool.checkOut();
 			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection, SQL_INSERT, true, values);
@@ -112,10 +114,31 @@ public class MuseumService {
 	public static boolean update(MuseumEntity museum) {
 		boolean retVal = false;
 		Connection connection = null;
-		Object values[] = { museum.getName(), museum.getAddress(), museum.getPhone(), museum.getCity(), museum.getCountry(), museum.getType(), museum.getMaps(), museum.getId()};
+		Object values[] = { museum.getName(), museum.getAddress(), museum.getPhone(), museum.getCity(), museum.getCountry(), museum.getType(), museum.getId()};
 		try {
 			connection = connectionPool.checkOut();
 			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection, SQL_UPDATE, false, values);
+			int affectedRows = pstmt.executeUpdate();
+			if (affectedRows == 0)
+				retVal = false;
+			else
+				retVal = true;
+			pstmt.close();
+		} catch (SQLException e) {
+			retVal = false;
+		} finally {
+			connectionPool.checkIn(connection);
+		}
+		return retVal;
+	}
+	
+	public static boolean updateLocation(double lat, double lng, int museumId) {
+		boolean retVal = false;
+		Connection connection = null;
+		Object values[] = { lat, lng, museumId };
+		try {
+			connection = connectionPool.checkOut();
+			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection, SQL_UPDATE_LOCATION, false, values);
 			int affectedRows = pstmt.executeUpdate();
 			if (affectedRows == 0)
 				retVal = false;

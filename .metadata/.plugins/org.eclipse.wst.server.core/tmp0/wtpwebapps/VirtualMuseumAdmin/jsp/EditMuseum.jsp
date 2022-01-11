@@ -25,9 +25,10 @@
 		String city = request.getParameter("current-city");
 		String country = request.getParameter("current-country");
 		String type = request.getParameter("current-type");
-		String maps = request.getParameter("current-maps");
-	    if(id != null && name != null && address != null && phone != null && city != null && country != null && type != null && maps != null) {
-	    	me = new MuseumEntity(Integer.parseInt(id), name, address, phone, city, country, type, maps);
+		String lat = request.getParameter("current-lat");
+		String lng = request.getParameter("current-lng");
+	    if(id != null && name != null && address != null && phone != null && city != null && country != null && type != null && lat != null && lng != null) {
+	    	me = new MuseumEntity(Integer.parseInt(id), name, address, phone, city, country, type, Double.parseDouble(lat), Double.parseDouble(lng));
 	    }
 	}
 %>
@@ -128,10 +129,8 @@
 	                <label class="museum-edit-input-label" for="type">Museum type: </label>
 	                <input class="museum-edit-input-field" name="type" type="text" value="<%= (me == null ? "" : me.getType()) %>" required>
 	            </div>
-	            <div class="museum-edit-single-input">
-	                <label class="museum-edit-input-label" for="maps">Museum location: </label>
-	                <input class="museum-edit-input-field" name="maps" type="text" value="<%= (me == null ? "" : me.getMaps()) %>" required>
-	            </div>
+	            <input type="hidden" name=lat value="<%= me.getLat() %>">
+	            <input type="hidden" name=lng value="<%= me.getLng() %>">
 	            <div class="museum-edit-single-input margin-botton-4perc">
 	                <input class="museum-edit-input-field" type="submit" value="Update Museum">
 	            </div>

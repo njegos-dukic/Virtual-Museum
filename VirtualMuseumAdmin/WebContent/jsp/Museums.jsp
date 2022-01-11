@@ -25,9 +25,9 @@
 	}
 	
 	String id = request.getParameter("delete-id");
-    if (id != null) {
-    	MuseumService.delete(Integer.parseInt(id));
-    }
+	boolean deleteStatus = true;
+    if (id != null) 
+    	deleteStatus = MuseumService.delete(Integer.parseInt(id));
     
     MuseumEntity editedMe = null;
 	String editedId = request.getParameter("id");
@@ -37,10 +37,19 @@
 	String editedCity = request.getParameter("city");
 	String editedCountry = request.getParameter("country");
 	String editedType = request.getParameter("type");
-	String editedMaps = request.getParameter("maps");
-	if(editedId != null && editedName != null && editedAddress != null && editedPhone != null && editedCity != null && editedCountry != null && editedType != null && editedMaps != null) {
-		editedMe = new MuseumEntity(Integer.parseInt(editedId), editedName, editedAddress, editedPhone, editedCity, editedCountry, editedType, editedMaps);
+	String editedLat = request.getParameter("lat");
+	String editedLng = request.getParameter("lng");
+	if(editedId != null && editedName != null && editedAddress != null && editedPhone != null && editedCity != null && editedCountry != null && editedType != null && editedLat != null && editedLng != null) {
+		editedMe = new MuseumEntity(Integer.parseInt(editedId), editedName, editedAddress, editedPhone, editedCity, editedCountry, editedType, Double.parseDouble(editedLat), Double.parseDouble(editedLng));
 		MuseumService.update(editedMe);
+	}
+	
+	String requestedLocationUpdate = request.getParameter("change-location");
+	if (requestedLocationUpdate != null) {
+		String museumId = request.getParameter("location-id");
+		String newLat = request.getParameter("lat");
+		String newLng = request.getParameter("lng");
+		MuseumService.updateLocation(Double.parseDouble(newLat), Double.parseDouble(newLng), Integer.parseInt(museumId));
 	}
 %>
 
@@ -154,11 +163,14 @@
 			        <div class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
 			        	<%= me.getType() %>
 			        </div>
-			        <a href="<%= me.getMaps() %>" target="_blank" style="width: 3.33%; justify-content: center; overflow: hidden;" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2" > 	
-				 		<img style="height: min(calc(8px + 1.5vw), 16px);" src="../images/location-pin.png" />
-			        </a>
+			        <form action="EditLocation.jsp" method="post" style="width: 3.33%; justify-content: center; overflow: hidden;" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2" > 	
+				 		<input type="hidden" name="id" value="<%= me.getId() %>">
+				 		<input type="hidden" name="lat" value="<%= me.getLat() %>">
+				 		<input type="hidden" name="lng" value ="<%= me.getLng() %>">
+				 		<input type="image" style="height: min(calc(8px + 1.5vw), 16px);" src="../images/location-pin.png" />
+			        </form>
 			        <div style="width: 3.33%; justify-content: center; overflow: hidden; height: min(calc(8px + 1.5vw), 16px);" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
-			        	<form style="height: min(calc(8px + 1.5vw), 16px);" action="EditMuseum.jsp" method=post>
+			        	<form style="height: min(calc(8px + 1.5vw), 16px);" action="EditMuseum.jsp" method="post">
 			        		<input type="hidden" name="current-id" value="<%= me.getId() %>">
 			        		<input type="hidden" name="current-name" value="<%= me.getName() %>">
 			        		<input type="hidden" name="current-address" value="<%= me.getAddress() %>">
@@ -166,7 +178,8 @@
 			        		<input type="hidden" name="current-city" value="<%= me.getCity() %>">
 			        		<input type="hidden" name="current-country" value="<%= me.getCountry() %>">
 			        		<input type="hidden" name="current-type" value="<%= me.getType() %>">
-			        		<input type="hidden" name="current-maps" value="<%= me.getMaps() %>">
+			        		<input type="hidden" name="current-lat" value="<%= me.getLat() %>">
+			        		<input type="hidden" name="current-lng" value="<%= me.getLng() %>">
 			        		<input style="height: min(calc(8px + 1.5vw), 16px);" src="../images/edit.png" type="image">
 			        	</form>
 			        </div>
@@ -179,5 +192,9 @@
 			    </div>
 			<% } %>
 		</div>
+		
+		<% if(!deleteStatus) { %>
+			<script>alert("Can't delete museum!")</script>
+		<% } %>	
 	</body>
 </html>

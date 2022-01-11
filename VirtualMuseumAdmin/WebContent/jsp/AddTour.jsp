@@ -1,5 +1,23 @@
+<%@ page import="org.unibl.etf.virtualmuseum.entities.TourEntity"%>
+<%@ page import="org.unibl.etf.virtualmuseum.services.TourService"%>
 <%@ page import="org.unibl.etf.virtualmuseum.entities.MuseumEntity"%>
 <%@ page import="org.unibl.etf.virtualmuseum.services.MuseumService"%>
+<%@ page import="java.util.Date"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.text.DateFormat"%>
+<%@ page import="java.sql.Timestamp"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.io.File" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="org.apache.commons.fileupload.FileUploadException" %>
+<%@ page import="org.apache.commons.fileupload.disk.DiskFileItemFactory" %>
+<%@ page import="org.apache.commons.io.FilenameUtils" %>
+<%@ page import="org.apache.commons.fileupload.servlet.ServletFileUpload" %>
+<%@ page import="org.apache.commons.fileupload.FileItem" %>
+<%@ page import="org.apache.commons.io.FileUtils" %>
+<%@ page import="java.io.InputStream" %>
+<%@ page import="java.io.FileOutputStream" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <jsp:useBean id="user" scope="session" class="org.unibl.etf.virtualmuseum.beans.UserBean"/>  
  
@@ -15,7 +33,81 @@
 	}
 	
 	else {
+		/* 
+	    String mid = request.getParameter("museum");
+		String tname = request.getParameter("name");
+		String startDate = request.getParameter("date");
+		String startTime = request.getParameter("time");
+		String duration = request.getParameter("duration");
+	
 		
+		// image-artifacts
+		// video-artifacts
+		// yt-video-artifacts
+		TourEntity te = null;
+	    if(mid != null && tname != null && startDate != null && startTime != null && duration != null) {
+	    	te = new TourEntity(Integer.parseInt(mid), tname, Timestamp.valueOf(startDate + " " + startTime), duration);
+	    	TourService.insert(te);
+	    	response.sendRedirect("Tours.jsp");
+	    } */
+	    try {
+	    	int tourId = -1;
+	        List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+	        HashMap<String, InputStream> inputStreams = new HashMap<String, InputStream>();
+	        TourEntity te = new TourEntity();
+	        String dateString = "";
+	        String timeString = "";
+	        for (FileItem item : items) {
+	            if (item.isFormField()) {
+	                String fieldName = item.getFieldName();
+	                String fieldValue = item.getString();
+	                System.out.println(fieldName + " -> " + fieldValue);
+	                if ("museum".equals(fieldName))
+	                	te.setMuseumId(Integer.parseInt(fieldValue));
+	                else if ("name".equals(fieldName))
+	                	te.setName(fieldValue);
+	                else if ("date".equals(fieldName))
+	                	dateString = fieldValue;
+	                else if ("time".equals(fieldName))
+	                	timeString = fieldValue;
+	                else if ("duration".equals(fieldName))
+	                	te.setDuration(Double.parseDouble(fieldValue));
+	                // ... (do your job here)
+	            } else {
+	                String fieldName = item.getFieldName();
+	                String fileName = FilenameUtils.getName(item.getName());
+	                InputStream fileContent = item.getInputStream();
+	                inputStreams.put(fileName, fileContent);
+	                // ... (do your job here)
+	            }
+	        }
+	        
+	        te.setStartDateTime(Timestamp.valueOf(dateString + " " + timeString + ":00"));
+	        TourService.insert(te);
+	        
+	        for (HashMap.Entry<String, InputStream> entry : inputStreams.entrySet()) {	        	
+	        	try {
+					InputStream inputStream = entry.getValue();
+					File folder = new File("C:\\Users\\njego\\Desktop\\IP\\projektni-zadatak-2022\\VirtualMuseumAdmin\\WebContent\\WEB-INF\\artifacts\\" + te.getId());
+					FileUtils.deleteDirectory(folder);
+					folder.mkdir();
+	                File file = new File("C:\\Users\\njego\\Desktop\\IP\\projektni-zadatak-2022\\VirtualMuseumAdmin\\WebContent\\WEB-INF\\artifacts\\" + te.getId() + "\\" + entry.getKey());
+	                FileOutputStream outputStream = new FileOutputStream(file, false);
+	                int read;
+	    	        byte[] bytes = new byte[1024 * 1024 * 1024];
+	    	        while ((read = inputStream.read(bytes)) != -1) {
+	    	            outputStream.write(bytes, 0, read);
+	    	        }
+	    	        outputStream.close();
+
+	            } catch (Exception e) {
+	            	System.out.println("INVALID WRITE!");
+	            }
+	        }
+	        
+	    } catch (FileUploadException e) {
+	        System.out.println("CANNOT PARSSE MULTIPART");
+	    }
 	}
 %>
 
@@ -30,7 +122,7 @@
     	<link href="../css/AddEdit.css" rel="stylesheet" type="text/css">
     	<link rel="icon" href="../images/logo.png">
     	<link rel="preconnect" href="https://fonts.googleapis.com">
-    	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    	<link rel="preconnect" href="https://fonts.gstatic.com">
     	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 				
 	
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -100,7 +192,7 @@
 		</div>
 		
 		<div class="museum-edit-container">
-	        <form id="add-tour" action="#" method="post" class="museum-edit-form">
+	        <form id="add-tour" action="#" method="post" class="museum-edit-form" enctype="multipart/form-data">
 	        	<div class="museum-edit-single-input">
 	                <label class="museum-edit-input-label" for="museum">Museum: </label>
 	                <select id="museum-select" class="museum-edit-input-field" name="museum" required>
@@ -108,6 +200,10 @@
 		                	<option value="<%= me.getId() %>"> <%= me.getName() %> </option>
 		                <% } %>
 	                </select>
+	            </div>
+	            <div class="museum-edit-single-input">
+	                <label class="museum-edit-input-label" for="name">Tour name: </label>
+	                <input class="museum-edit-input-field" name="name" type="text" required>
 	            </div>
 	            <div class="museum-edit-single-input">
 	                <label class="museum-edit-input-label" for="date">Tour date: </label>

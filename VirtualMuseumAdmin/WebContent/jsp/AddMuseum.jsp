@@ -23,9 +23,10 @@
 		String city = request.getParameter("city");
 		String country = request.getParameter("country");
 		String type = request.getParameter("type");
-		String maps = request.getParameter("maps");
-	    if(name != null && address != null && phone != null && city != null && country != null && type != null && maps != null) {
-	    	me = new MuseumEntity(0, name, address, phone, city, country, type, maps);
+		String lat = request.getParameter("lat");
+		String lng = request.getParameter("lng");
+	    if(name != null && address != null && phone != null && city != null && country != null && type != null && lat != null && lng != null) {
+	    	me = new MuseumEntity(0, name, address, phone, city, country, type, Double.parseDouble(lat), Double.parseDouble(lng));
 	    	MuseumService.insert(me);
 	    	response.sendRedirect("Museums.jsp");
 	    }
@@ -41,12 +42,28 @@
     	<title>Virtual Museum Admin</title>
     	<link href="../css/Header.css" rel="stylesheet" type="text/css">
     	<link href="../css/AddEdit.css" rel="stylesheet" type="text/css">
+    	<link href="../css/Modal.css" rel="stylesheet" type="text/css">
     	<link rel="icon" href="../images/logo.png">
     	<link rel="preconnect" href="https://fonts.googleapis.com">
     	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 				
 	
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	  
+	  	<script>
+	  		function selectLocation() {
+	  			document.getElementById('id01').style.display='block';
+	  			return false;
+	  		}
+	  	</script>
+	  	
+	  	<style>
+	  		#googleMap {
+				border-radius: 10px;
+			  	height: 300px;
+			  	width: 100%;
+			}
+		</style>
 	  
 		<script>
 	        $(document).ready(function() {  
@@ -71,9 +88,67 @@
 	            data.forEach(city => { $("#cities-select").append("<option value=\"" + city.city + "\">" + city.city + "</option>"); })
 	        }
 	    </script>
+	    
+	    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQNUv-fC8_xG55L7HC-sK9siqGA_1YbsM"></script>
+ 
+		<script>
+			var map;
+			var selectedLng = null;
+			var selectedLtd = null;
+			var myCenter = new google.maps.LatLng(44.766641829, 17.1870187);
+			
+			var marker;
+			var infowindow;
+			
+			function initialize() {
+			  var mapProp = {
+			    center: myCenter,
+			    zoom: 5,
+			    mapTypeId: google.maps.MapTypeId.ROADMAP
+			  };
+			
+			  map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+		
+			  google.maps.event.addListener(map, 'click', function(event) {
+			    placeMarker(event.latLng);
+			  });
+			  
+			  document.getElementById('selected-lat').value = null;
+			  document.getElementById('selected-lng').value = null;
+			}
+			
+			function placeMarker(location) {
+				
+			  if (!marker || !marker.setPosition) {
+			    marker = new google.maps.Marker({
+			      position: location,
+			      map: map,
+			    });
+			  } else {
+			    marker.setPosition(location);
+			  }
+			  if (!!infowindow && !!infowindow.close) {
+			    infowindow.close();
+			  }
+			  infowindow = new google.maps.InfoWindow({
+			    content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+			  });
+			  infowindow.open(map, marker);
+			  document.getElementById('selected-lat').value = location.lat();
+			  document.getElementById('selected-lng').value = location.lng();
+			}
+			
+			function checkLocation() {
+				if (document.getElementById('selected-lat').value == null || document.getElementById('selected-lat').value == "" || document.getElementById('selected-lng').value == null || document.getElementById('selected-lng').value == "") {
+					alert("Please select location!");
+					return false;
+				}
+			}
+		</script>
+	    
 	</head>
 	
-	<body>
+	<body onload="initialize()">
 		<div class="header-container">
             <div class="header-logo-container">
 				<a class="header-logo-container" href="Homepage.jsp">
@@ -128,12 +203,24 @@
 	            </div>
 	            <div class="museum-edit-single-input">
 	                <label class="museum-edit-input-label" for="maps">Museum location: </label>
-	                <input class="museum-edit-input-field" name=maps type="text" required>
+	                <input type="button" onClick="selectLocation()" class="museum-edit-input-field" value="SELECT LOCATION">
 	            </div>
+	            <input id="selected-lat" type="hidden" name="lat" required>
+	            <input id="selected-lng" type="hidden" name="lng" required>
 	            <div class="museum-edit-single-input margin-botton-4perc">
-	                <input class="museum-edit-input-field" type="submit" value="Add Museum">
+	                <input class="museum-edit-input-field" onclick="return checkLocation()" type="submit" value="Add Museum">
 	            </div>
 	        </form>
 	    </div>
+	    
+	    
+	    <div id="id01" class="w3-modal">
+		    <div class="w3-modal-content">
+		      <div class="w3-container">
+		      	<span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+		        <div id="googleMap"></div>
+		      </div>
+		    </div>
+		  </div>
 	</body>
 </html>

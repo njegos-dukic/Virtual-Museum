@@ -19,7 +19,7 @@ public class UserService {
 	private static final String SQL_TOGGLE_ADMIN = "UPDATE VirtualMuseum.USER SET isAdmin = NOT isAdmin WHERE id = ?";
 	private static final String SQL_TOGGLE_APPROVED = "UPDATE VirtualMuseum.USER SET isApproved = NOT isApproved WHERE id = ?";
 	private static final String SQL_TOGGLE_BLOCKED = "UPDATE VirtualMuseum.USER SET isBlocked = NOT isBlocked WHERE id = ?";
-	private static final String SQL_TOGGLE_PASSWORD_RESET = "UPDATE VirtualMuseum.USER SET isPasswordReset = 1 WHERE id = ?";
+	private static final String SQL_TOGGLE_PASSWORD_RESET = "UPDATE VirtualMuseum.USER SET isPasswordReset = NOT isPasswordReset WHERE id = ?";
 	private static final String SQL_DELETE = "DELETE FROM VirtualMuseum.USER WHERE id = ?";
 	
 	public static ArrayList<UserEntity> selectAll(){
