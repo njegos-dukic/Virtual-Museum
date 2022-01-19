@@ -5,6 +5,8 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.text.DateFormat"%>
 <%@ page import="java.sql.Timestamp"%>
+<%@ page import="java.io.File" %>
+<%@ page import="org.apache.commons.io.FileUtils" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <jsp:useBean id="user" scope="session" class="org.unibl.etf.virtualmuseum.beans.UserBean">
 	<jsp:setProperty name="user" property= "username" value=""/> 
@@ -23,8 +25,12 @@
 		
 		String id = request.getParameter("delete-id");
 		boolean deleteStatus = true;
-	    if (id != null) 
+	    if (id != null) {
 	    	deleteStatus = TourService.delete(Integer.parseInt(id));
+	    	File folder = new File("C:\\Users\\njego\\Desktop\\IP\\projektni-zadatak-2022\\VirtualMuseumAdmin\\WebContent\\WEB-INF\\artifacts\\" + id);
+			FileUtils.deleteDirectory(folder);
+			
+	    }
 	    
 	    TourEntity editedTe = null;
 	    String tid = request.getParameter("tid");
@@ -33,8 +39,9 @@
 		String startDate = request.getParameter("date");
 		String startTime = request.getParameter("time");
 		String duration = request.getParameter("duration");
-	    if(tid != null && mid != null && tname != null && startDate != null && startTime != null  && duration != null) {
-	    	editedTe = new TourEntity(Integer.parseInt(tid), Integer.parseInt(mid), tname, Timestamp.valueOf(startDate + " " + startTime), Double.parseDouble(duration));
+		String price = request.getParameter("price");
+	    if(tid != null && mid != null && tname != null && startDate != null && startTime != null  && duration != null && price != null) {
+	    	editedTe = new TourEntity(Integer.parseInt(tid), Integer.parseInt(mid), tname, Timestamp.valueOf(startDate + " " + startTime), Double.parseDouble(duration), Double.parseDouble(price));
 	    	TourService.update(editedTe);
 		}
     %>
@@ -98,20 +105,23 @@
 		
 		<div class="content-container">
 			<div class="content-custom-table-header">
-		    	<div style="width: 17%;" class="content-custom-table-column right-margin-2">
+		    	<div style="width: 14.16%;" class="content-custom-table-column right-margin-2">
 		        	MUSEUM
 		        </div>
-		        <div style="width: 17%;" class="content-custom-table-column left-right-margin-2">
+		        <div style="width: 14.16%;" class="content-custom-table-column left-right-margin-2">
 		        	TOUR NAME
 		        </div>
-		        <div style="width: 17%;" class="content-custom-table-column left-right-margin-2">
+		        <div style="width: 14.16%;" class="content-custom-table-column left-right-margin-2">
 		        	START DATE
 		        </div>
-		        <div style="width: 17%;" class="content-custom-table-column left-right-margin-2">
+		        <div style="width: 14.16%;" class="content-custom-table-column left-right-margin-2">
 		        	START TIME
 		        </div>
-		        <div style="width: 17%;" class="content-custom-table-column left-right-margin-2">
+		        <div style="width: 14.16%;" class="content-custom-table-column left-right-margin-2">
 		        	DURATION
+		        </div>
+		        <div style="width: 14.16%;" class="content-custom-table-column left-right-margin-2">
+		        	PRICE
 		        </div>
 		        <div style="width: 5%;" class="content-custom-table-column left-right-margin-2">
 		        	ARTIFACTS
@@ -131,24 +141,28 @@
         			DateFormat sqlDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
         	%>
 				<div class="content-custom-table-record-container">
-			    	<div style="width: 17%;" class="content-custom-table-column content-custom-table-data-column-color right-margin-2">
+			    	<div style="width: 14.16%;" class="content-custom-table-column content-custom-table-data-column-color right-margin-2">
 			        	<%= te.getMuseumName() %>
 			        </div>
-			        <div style="width: 17%;" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
+			        <div style="width: 14.16%;" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
 			        	<%= te.getName() %>
 			        </div>
-			        <div style="width: 17%;" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
+			        <div style="width: 14.16%;" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
 			        	<%= (dateFormatter.format(date)) %>
 			        </div>
-			        <div style="width: 17%;" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
+			        <div style="width: 14.16%;" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
 			        	<%= (timeFormatter.format(date)) + " H" %> 
 			        </div>
-			        <div style="width: 17%;" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
+			        <div style="width: 14.16%;" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
 			        	<%= te.getDuration() + " H" %>
 			        </div>
-			        <a href="#" target="_blank" style="width: 5%; justify-content: center; overflow: hidden;" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2" > 	
-				 		<img style="height: min(calc(8px + 1.5vw), 16px);" src="../images/artifact.png" />
-			        </a>
+			        <div style="width: 14.16%;" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
+			        	<%= te.getPrice() + " EUR" %>
+			        </div>
+			        <form action="Artifacts.jsp" style="width: 5%; justify-content: center; overflow: hidden;" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2" > 	
+				 		<input type=hidden name="tour-id" value="<%= te.getId() %>">
+				 		<input type=image style="height: min(calc(8px + 1.5vw), 16px);" src="../images/artifact.png" />
+			        </form>
 			        <div style="width: 5%; justify-content: center; overflow: hidden; height: min(calc(8px + 1.5vw), 16px);" class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
 			        	<form style="height: min(calc(8px + 1.5vw), 16px);" action="EditTour.jsp" method=post>
 			        		<input type="hidden" name="current-tid" value="<%= te.getId() %>">
@@ -157,6 +171,7 @@
 			        		<input type="hidden" name="current-date" value="<%= (sqlDateFormatter.format(date)) %>">
 			        		<input type="hidden" name="current-time" value="<%= (timeFormatterWithSeconds.format(date)) %>">
 			        		<input type="hidden" name="current-duration" value="<%= te.getDuration() %>">
+			        		<input type="hidden" name="current-price" value="<%= te.getPrice() %>">
 			        		<input style="height: min(calc(8px + 1.5vw), 16px);" src="../images/edit.png" type="image">
 			        	</form>
 			        </div>

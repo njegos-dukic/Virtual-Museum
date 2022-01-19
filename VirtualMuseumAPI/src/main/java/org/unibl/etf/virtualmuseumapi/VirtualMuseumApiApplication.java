@@ -9,5 +9,4 @@ public class VirtualMuseumApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(VirtualMuseumApiApplication.class, args);
     }
-
 }

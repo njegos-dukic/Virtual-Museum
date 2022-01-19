@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS `VirtualMuseum`.`MUSEUM` (
   `city` VARCHAR(50) NOT NULL,
   `country` VARCHAR(50) NOT NULL,
   `type` VARCHAR(50) NOT NULL,
-  `maps` VARCHAR(300) NOT NULL,
+  `lat` DECIMAL(10,7) NOT NULL,
+  `lng` DECIMAL(10,7) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -38,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `VirtualMuseum`.`TOUR` (
   `name` VARCHAR(100) NULL,
   `start` DATETIME NOT NULL,
   `duration` DECIMAL(3,1) NOT NULL,
+  `price` DECIMAL(10,2) NOT NULL,
   `museumId` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_TOUR_MUSEUM1_idx` (`museumId` ASC) VISIBLE,
@@ -70,29 +72,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `VirtualMuseum`.`TICKET`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `VirtualMuseum`.`TICKET` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `tourId` INT NOT NULL,
-  `idUser` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_TICKET_TOUR1_idx` (`tourId` ASC) VISIBLE,
-  INDEX `fk_TICKET_USER1_idx` (`idUser` ASC) VISIBLE,
-  CONSTRAINT `fk_TICKET_TOUR1`
-    FOREIGN KEY (`tourId`)
-    REFERENCES `VirtualMuseum`.`TOUR` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_TICKET_USER1`
-    FOREIGN KEY (`idUser`)
-    REFERENCES `VirtualMuseum`.`USER` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `VirtualMuseum`.`ARTIFACT`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `VirtualMuseum`.`ARTIFACT` (
@@ -105,6 +84,72 @@ CREATE TABLE IF NOT EXISTS `VirtualMuseum`.`ARTIFACT` (
   CONSTRAINT `fk_ARTIFCAT_TOUR`
     FOREIGN KEY (`tourId`)
     REFERENCES `VirtualMuseum`.`TOUR` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `VirtualMuseum`.`CARD`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `VirtualMuseum`.`CARD` (
+  `cardNumber` CHAR(16) NOT NULL,
+  `firstName` VARCHAR(200) NOT NULL,
+  `lastName` VARCHAR(200) NOT NULL,
+  `cardType` VARCHAR(25) NOT NULL,
+  `expirationDate` TEXT(4) NOT NULL,
+  `cvv` TEXT(3) NOT NULL,
+  `balance` DECIMAL(10,2) NOT NULL,
+  `isEnabled` TINYINT NOT NULL,
+  PRIMARY KEY (`cardNumber`))
+ENGINE = InnoDB
+COMMENT = '		';
+
+
+-- -----------------------------------------------------
+-- Table `VirtualMuseum`.`CARD_USER`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `VirtualMuseum`.`CARD_USER` (
+  `userId` INT NOT NULL,
+  `cardNumber` CHAR(16) NOT NULL,
+  PRIMARY KEY (`userId`, `cardNumber`),
+  INDEX `fk_CARD_has_USER_USER1_idx` (`userId` ASC) VISIBLE,
+  INDEX `fk_CARD_USER_CARD1_idx` (`cardNumber` ASC) VISIBLE,
+  CONSTRAINT `fk_CARD_has_USER_USER1`
+    FOREIGN KEY (`userId`)
+    REFERENCES `VirtualMuseum`.`USER` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_CARD_USER_CARD1`
+    FOREIGN KEY (`cardNumber`)
+    REFERENCES `VirtualMuseum`.`CARD` (`cardNumber`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `VirtualMuseum`.`TRANSACTION`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `VirtualMuseum`.`TRANSACTION` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `userId` INT NOT NULL,
+  `cardNumber` CHAR(16) NOT NULL,
+  `tourId` INT NOT NULL,
+  `amount` DECIMAL(10,2) NOT NULL,
+  `isSuccess` TINYINT NOT NULL,
+  `ticketNumber` VARCHAR(256) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_TRANSACTION_TOUR1_idx` (`tourId` ASC) VISIBLE,
+  INDEX `fk_TRANSACTION_CARD_USER1_idx` (`userId` ASC, `cardNumber` ASC) VISIBLE,
+  CONSTRAINT `fk_TRANSACTION_TOUR1`
+    FOREIGN KEY (`tourId`)
+    REFERENCES `VirtualMuseum`.`TOUR` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_TRANSACTION_CARD_USER1`
+    FOREIGN KEY (`userId` , `cardNumber`)
+    REFERENCES `VirtualMuseum`.`CARD_USER` (`userId` , `cardNumber`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

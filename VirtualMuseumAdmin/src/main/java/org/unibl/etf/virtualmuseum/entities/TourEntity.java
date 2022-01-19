@@ -10,19 +10,21 @@ public class TourEntity {
 	private String museumName;
 	private Timestamp startDateTime;
 	private double duration;
+	private double price;
 	
 	public TourEntity() { }
 	
-	public TourEntity(int id, int museumId, String name, Timestamp startDateTime, double duration) {
+	public TourEntity(int id, int museumId, String name, Timestamp startDateTime, double duration, double price) {
 		super();
 		this.id = id;
 		this.museumId = museumId;
 		this.name = name;
 		this.startDateTime = startDateTime;
 		this.duration = duration;
+		this.price = price;
 	}
 	
-	public TourEntity(int id, int museumId, String name, String museumName, Timestamp startDateTime, double duration) {
+	public TourEntity(int id, int museumId, String name, String museumName, Timestamp startDateTime, double duration, double price) {
 		super();
 		this.id = id;
 		this.museumId = museumId;
@@ -30,14 +32,7 @@ public class TourEntity {
 		this.museumName = museumName;
 		this.startDateTime = startDateTime;
 		this.duration = duration;
-	}
-	
-	public TourEntity(int museumId, String name, Timestamp startDateTime, double duration) {
-		super();
-		this.museumId = museumId;
-		this.name = name;
-		this.startDateTime = startDateTime;
-		this.duration = duration;
+		this.price = price;
 	}
 	
 	public int getId() {
@@ -75,5 +70,11 @@ public class TourEntity {
 	}
 	public void setDuration(Double duration) {
 		this.duration = duration;
+	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 }

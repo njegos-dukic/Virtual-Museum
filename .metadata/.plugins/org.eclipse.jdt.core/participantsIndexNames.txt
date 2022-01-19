@@ -1,6 +1,12 @@
 INDEX VERSION 1.131
+C:\Users\njego\Desktop\IP\projektni-zadatak-2022\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1630899656.index
+\VirtualMuseumUI\src\main\java
+C:\Users\njego\Desktop\IP\projektni-zadatak-2022\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\541651032.index
+\VirtualBankUI\src\main\java
 C:\Users\njego\Desktop\IP\projektni-zadatak-2022\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1689177117.index
 \VirtualMuseumAdmin\src\main\java
+C:\Users\njego\Desktop\IP\projektni-zadatak-2022\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1199986102.index
+\VirtualMuseumUI\src\main\java
 C:\Users\njego\Desktop\IP\projektni-zadatak-2022\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\885558896.index
 \VirtualMuseumAdmin\src\main\java
 C:\Users\njego\Desktop\IP\projektni-zadatak-2022\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2527110589.index

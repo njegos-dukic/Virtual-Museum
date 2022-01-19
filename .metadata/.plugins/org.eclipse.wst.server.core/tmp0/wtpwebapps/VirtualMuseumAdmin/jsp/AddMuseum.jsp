@@ -43,9 +43,10 @@
     	<link href="../css/Header.css" rel="stylesheet" type="text/css">
     	<link href="../css/AddEdit.css" rel="stylesheet" type="text/css">
     	<link href="../css/Modal.css" rel="stylesheet" type="text/css">
+    	<link href="../css/Menu.css" rel="stylesheet" type="text/css">
     	<link rel="icon" href="../images/logo.png">
     	<link rel="preconnect" href="https://fonts.googleapis.com">
-    	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    	<link rel="preconnect" href="https://fonts.gstatic.com">
     	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 				
 	
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -66,22 +67,24 @@
 		</style>
 	  
 		<script>
+			var batutaApiKey = "6f828c1760732603d2bcf250899ca120";
+			
 	        $(document).ready(function() {  
 	            $.get("https://restcountries.com/v3.1/region/europe", function(data) {
 	                data.forEach(country => $("#countries-select").append("<option data-alpha2code=\"" + country.cca2 + "\" value=\"" + country.name.common + "\">" + country.name.common + "</option>"))
 	            }) 
-	            
+
 	            $('#countries-select').change(function() {
-	            	   $('#cities-select').html('');
+	            	$('#cities-select').html('');
 	                   $(this).find(":selected").each(function () {
-	                       var endpoint = "http://battuta.medunes.net/api/region/" + $(this).data('alpha2code') + "/all/?key=e1efcc9e9bac7b924ccb5a74af63540f&callback=parseResponse";
+	                       var endpoint = "http://battuta.medunes.net/api/region/" + $(this).data('alpha2code') + "/all/?key=" + batutaApiKey + "&callback=parseResponse";
 	                    $.getScript(endpoint);
 	                });
 	            });
 	        });
 	        
 	        function parseResponse(data) {
-	            data.forEach(region => $.getScript("http://battuta.medunes.net/api/city/" + region.country +"/search/?region=" + region.region + "&key=e1efcc9e9bac7b924ccb5a74af63540f&callback=parseCityResponse"))
+	            data.forEach(region => $.getScript("http://battuta.medunes.net/api/city/" + region.country +"/search/?region=" + region.region + "&key=" + batutaApiKey + "&callback=parseCityResponse"))
 	        }
 	        
 	        function parseCityResponse(data) {
@@ -169,6 +172,24 @@
 		            <input type="image" class="header-login-image" src="../images/login.png" />
                 </form>
             </div>
+		</div>
+		
+		<div class="menu-container">
+			<a class="menu-item right-margin-3" href="Homepage.jsp">
+		        HOME 
+		    </a>
+			<a style="background-color: #8b84bf;" class="menu-item right-margin-3" href="Museums.jsp">
+		        MUSEUMS
+		    </a>
+		    <a class="menu-item left-margin-3 right-margin-3" href="Tours.jsp">
+		        TOURS
+		    </a>
+		    <a class="menu-item left-margin-3 right-margin-3" href="Users.jsp">
+		        USERS
+		    </a>
+		    <a class="menu-item left-margin-3" href="Logs.jsp">
+		        LOGS
+		    </a>
 		</div>
 		
 		<div class="museum-edit-container">

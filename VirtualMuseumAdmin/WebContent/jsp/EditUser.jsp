@@ -38,9 +38,10 @@
     	<title>Virtual Museum Admin</title>
     	<link href="../css/Header.css" rel="stylesheet" type="text/css">
     	<link href="../css/AddEdit.css" rel="stylesheet" type="text/css">
+    	<link href="../css/Menu.css" rel="stylesheet" type="text/css">
     	<link rel="icon" href="../images/logo.png">
     	<link rel="preconnect" href="https://fonts.googleapis.com">
-    	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    	<link rel="preconnect" href="https://fonts.gstatic.com">
     	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 				
 	</head>
 	
@@ -65,6 +66,24 @@
 		            <input type="image" class="header-login-image" src="../images/login.png" />
                 </form>
             </div>
+		</div>
+		
+		<div class="menu-container">
+			<a class="menu-item right-margin-3" href="Homepage.jsp">
+		        HOME 
+		    </a>
+			<a class="menu-item right-margin-3" href="Museums.jsp">
+		        MUSEUMS
+		    </a>
+		    <a class="menu-item left-margin-3 right-margin-3" href="Tours.jsp">
+		        TOURS
+		    </a>
+		    <a style="background-color: #8b84bf;" class="menu-item left-margin-3 right-margin-3" href="Users.jsp">
+		        USERS
+		    </a>
+		    <a class="menu-item left-margin-3" href="Logs.jsp">
+		        LOGS
+		    </a>
 		</div>
 		
 		<div class="museum-edit-container">

@@ -29,6 +29,7 @@
     	<title>Virtual Museum Admin</title>
     	<link href="../css/Header.css" rel="stylesheet" type="text/css">
     	<link href="../css/AddEdit.css" rel="stylesheet" type="text/css">
+    	<link href="../css/Menu.css" rel="stylesheet" type="text/css">
     	<link rel="icon" href="../images/logo.png">
     	<link rel="preconnect" href="https://fonts.googleapis.com">
     	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -50,7 +51,7 @@
 			
 			#googleMap {
 				border-radius: 10px;
-			  	height: 90%;
+			  	height: 100%;
 			  	width: 100%;
 			  	margin-top: 20px;
 			}
@@ -115,7 +116,24 @@
 		</script>
 	</head>
 	
-	<body onload="initialize()">
+	<body onload="initialize()" >
+		<div class="menu-container" style="width: 100%;">
+			<a class="menu-item right-margin-3" href="Homepage.jsp">
+		        HOME 
+		    </a>
+			<a style="background-color: #8b84bf;" class="menu-item right-margin-3" href="Museums.jsp">
+		        MUSEUMS
+		    </a>
+		    <a class="menu-item left-margin-3 right-margin-3" href="Tours.jsp">
+		        TOURS
+		    </a>
+		    <a class="menu-item left-margin-3 right-margin-3" href="Users.jsp">
+		        USERS
+		    </a>
+		    <a class="menu-item left-margin-3" href="Logs.jsp">
+		        LOGS
+		    </a>
+		</div>
 		<div id="googleMap"></div>
 		<form method="post" action="Museums.jsp">
 			<input type="hidden" name="change-location" value="1">

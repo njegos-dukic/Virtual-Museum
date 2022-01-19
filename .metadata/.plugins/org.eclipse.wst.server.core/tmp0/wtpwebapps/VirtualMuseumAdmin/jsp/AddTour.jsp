@@ -61,7 +61,6 @@
 	            if (item.isFormField()) {
 	                String fieldName = item.getFieldName();
 	                String fieldValue = item.getString();
-	                System.out.println(fieldName + " -> " + fieldValue);
 	                if ("museum".equals(fieldName))
 	                	te.setMuseumId(Integer.parseInt(fieldValue));
 	                else if ("name".equals(fieldName))
@@ -72,41 +71,44 @@
 	                	timeString = fieldValue;
 	                else if ("duration".equals(fieldName))
 	                	te.setDuration(Double.parseDouble(fieldValue));
-	                // ... (do your job here)
+	                else if ("price".equals(fieldName))
+	                	te.setPrice(Double.parseDouble(fieldValue));
 	            } else {
 	                String fieldName = item.getFieldName();
 	                String fileName = FilenameUtils.getName(item.getName());
 	                InputStream fileContent = item.getInputStream();
 	                inputStreams.put(fileName, fileContent);
-	                // ... (do your job here)
 	            }
 	        }
 	        
 	        te.setStartDateTime(Timestamp.valueOf(dateString + " " + timeString + ":00"));
-	        TourService.insert(te);
+	        boolean success = TourService.insert(te);
 	        
-	        for (HashMap.Entry<String, InputStream> entry : inputStreams.entrySet()) {	        	
-	        	try {
-					InputStream inputStream = entry.getValue();
-					File folder = new File("C:\\Users\\njego\\Desktop\\IP\\projektni-zadatak-2022\\VirtualMuseumAdmin\\WebContent\\WEB-INF\\artifacts\\" + te.getId());
-					FileUtils.deleteDirectory(folder);
-					folder.mkdir();
-	                File file = new File("C:\\Users\\njego\\Desktop\\IP\\projektni-zadatak-2022\\VirtualMuseumAdmin\\WebContent\\WEB-INF\\artifacts\\" + te.getId() + "\\" + entry.getKey());
-	                FileOutputStream outputStream = new FileOutputStream(file, false);
-	                int read;
-	    	        byte[] bytes = new byte[1024 * 1024 * 1024];
-	    	        while ((read = inputStream.read(bytes)) != -1) {
-	    	            outputStream.write(bytes, 0, read);
-	    	        }
-	    	        outputStream.close();
-
-	            } catch (Exception e) {
-	            	System.out.println("INVALID WRITE!");
-	            }
+	        if (success) {
+				File folder = new File("C:\\Users\\njego\\Desktop\\IP\\projektni-zadatak-2022\\VirtualMuseumAdmin\\WebContent\\WEB-INF\\artifacts\\" + te.getId());
+				FileUtils.deleteDirectory(folder);
+				folder.mkdir();
+				
+		        for (HashMap.Entry<String, InputStream> entry : inputStreams.entrySet()) {	        	
+		        	try {
+						InputStream inputStream = entry.getValue();
+		                File file = new File("C:\\Users\\njego\\Desktop\\IP\\projektni-zadatak-2022\\VirtualMuseumAdmin\\WebContent\\WEB-INF\\artifacts\\" + te.getId() + "\\" + entry.getKey());
+		                FileOutputStream outputStream = new FileOutputStream(file, false);
+		                int read;
+		    	        byte[] bytes = new byte[1024 * 1024 * 1024];
+		    	        while ((read = inputStream.read(bytes)) != -1) {
+		    	            outputStream.write(bytes, 0, read);
+		    	        }
+		    	        outputStream.close();
+		    	        inputStream.close();
+		            } catch (Exception e) {
+		            	assert(true);
+		            }
+		        }
 	        }
 	        
 	    } catch (FileUploadException e) {
-	        System.out.println("CANNOT PARSSE MULTIPART");
+	      	assert(true);
 	    }
 	}
 %>
@@ -120,6 +122,7 @@
     	<title>Virtual Museum Admin</title>
     	<link href="../css/Header.css" rel="stylesheet" type="text/css">
     	<link href="../css/AddEdit.css" rel="stylesheet" type="text/css">
+    	<link href="../css/Menu.css" rel="stylesheet" type="text/css">
     	<link rel="icon" href="../images/logo.png">
     	<link rel="preconnect" href="https://fonts.googleapis.com">
     	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -191,6 +194,24 @@
             </div>
 		</div>
 		
+		<div class="menu-container">
+			<a class="menu-item right-margin-3" href="Homepage.jsp">
+		        HOME 
+		    </a>
+			<a class="menu-item right-margin-3" href="Museums.jsp">
+		        MUSEUMS
+		    </a>
+		    <a style="background-color: #8b84bf;" class="menu-item left-margin-3 right-margin-3" href="Tours.jsp">
+		        TOURS
+		    </a>
+		    <a class="menu-item left-margin-3 right-margin-3" href="Users.jsp">
+		        USERS
+		    </a>
+		    <a class="menu-item left-margin-3" href="Logs.jsp">
+		        LOGS
+		    </a>
+		</div>
+		
 		<div class="museum-edit-container">
 	        <form id="add-tour" action="#" method="post" class="museum-edit-form" enctype="multipart/form-data">
 	        	<div class="museum-edit-single-input">
@@ -216,6 +237,10 @@
 	            <div class="museum-edit-single-input">
 	                <label class="museum-edit-input-label" for="duration">Duration (H): </label>
 	                <input class="museum-edit-input-field" name="duration" type="number" step=".5" required>
+	            </div>
+	            <div class="museum-edit-single-input">
+	                <label class="museum-edit-input-label" for="price">Price (EUR): </label>
+	                <input class="museum-edit-input-field" name="price" type="number" step=".01" required>
 	            </div>
 	            <div class="museum-edit-single-input">
 	                <label class="museum-edit-input-label" for="image-artifacts">Image artifacts: </label>

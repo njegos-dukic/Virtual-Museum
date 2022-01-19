@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.unibl.etf.virtualmuseum.entities.MuseumEntity;
 import org.unibl.etf.virtualmuseum.entities.TourEntity;
 import org.unibl.etf.virtualmuseum.services.utils.ConnectionPool;
 import org.unibl.etf.virtualmuseum.services.utils.ServiceUtil;
@@ -14,10 +13,10 @@ import org.unibl.etf.virtualmuseum.services.utils.ServiceUtil;
 public class TourService {
 
 	private static ConnectionPool connectionPool = ConnectionPool.getConnectionPool();
-	private static final String SQL_SELECT_ALL = "SELECT t.id AS tid, t.name AS tname, t.start, t.duration, m.id AS mid, m.name AS mname FROM TOUR t INNER JOIN MUSEUM m ON t.museumId = m.id";
-	private static final String SQL_INSERT_TOUR = "INSERT INTO TOUR (name, start, duration, museumId) VALUES (?, ?, ?, ?)";
+	private static final String SQL_SELECT_ALL = "SELECT t.id AS tid, t.name AS tname, t.start, t.duration, t.price, m.id AS mid, m.name AS mname FROM TOUR t INNER JOIN MUSEUM m ON t.museumId = m.id";
+	private static final String SQL_INSERT_TOUR = "INSERT INTO TOUR (name, start, duration, price, museumId) VALUES (?, ?, ?, ?, ?)";
 	// private static final String SQL_INSERT_ARTIFACT = "INSERT INTO TOUR (name, start, duration, museumId) VALUES (?, ?, ?, ?)";
-	private static final String SQL_UPDATE = "UPDATE TOUR SET museumId = ?, duration = ?, start = ?, name = ? WHERE id = ?";
+	private static final String SQL_UPDATE = "UPDATE TOUR SET museumId = ?, duration = ?, price = ?, start = ?, name = ? WHERE id = ?";
 	private static final String SQL_DELETE_TOUR = "DELETE FROM TOUR WHERE id = ?";
 	private static final String SQL_DELETE_ARTIFACTS = "DELETE FROM ARTIFACT WHERE tourId = ?";
 	private static final String SQL_DELETE_TICKETS = "DELETE FROM TICKET WHERE tourId = ?";
@@ -34,7 +33,7 @@ public class TourService {
 			rs = pstmt.executeQuery();			
 			
 			while (rs.next()){
-				retVal.add(new TourEntity(rs.getInt("tid"), rs.getInt("mid"), rs.getString("tname"), rs.getString("mname"), rs.getTimestamp("start"), rs.getDouble("duration")));
+				retVal.add(new TourEntity(rs.getInt("tid"), rs.getInt("mid"), rs.getString("tname"), rs.getString("mname"), rs.getTimestamp("start"), rs.getDouble("duration"), rs.getDouble("price")));
 			}
 			pstmt.close();
 		} catch (SQLException exp) {
@@ -73,7 +72,7 @@ public class TourService {
 	public static boolean update(TourEntity tour) {
 		boolean retVal = false;
 		Connection connection = null;
-		Object values[] = { tour.getMuseumId(), tour.getDuration(), tour.getStartDateTime(), tour.getName(), tour.getId()};
+		Object values[] = { tour.getMuseumId(), tour.getDuration(), tour.getPrice(), tour.getStartDateTime(), tour.getName(), tour.getId()};
 		try {
 			connection = connectionPool.checkOut();
 			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection, SQL_UPDATE, false, values);
@@ -95,7 +94,7 @@ public class TourService {
 		boolean retVal = false;
 		Connection connection = null;
 		ResultSet generatedKeys = null;
-		Object values[] = { tour.getName(), tour.getStartDateTime(), tour.getDuration(), tour.getMuseumId() };
+		Object values[] = { tour.getName(), tour.getStartDateTime(), tour.getDuration(), tour.getPrice(), tour.getMuseumId() };
 		try {
 			connection = connectionPool.checkOut();
 			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection, SQL_INSERT_TOUR, true, values);

@@ -1,8 +1,11 @@
 INDEX VERSION 1.4+C:\Users\njego\Desktop\IP\projektni-zadatak-2022\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-4038844355.index
-1297480766.index
-3983735513.index
-1909712471.index
-3947937468.index
-1689177117.index
+3257619186.index
 1611828241.index
+3983735513.index
+1689177117.index
+1297480766.index
+4038844355.index
+541651032.index
+3947937468.index
+541651032.index
+1909712471.index

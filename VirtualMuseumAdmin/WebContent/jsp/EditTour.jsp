@@ -29,9 +29,10 @@
 		String startDate = request.getParameter("current-date");
 		String startTime = request.getParameter("current-time");
 		String duration = request.getParameter("current-duration");
+		String price = request.getParameter("current-price");
 
-	    if(tid != null && mid != null && tname != null && startDate != null && startTime != null && duration != null) {
-	    	te = new TourEntity(Integer.parseInt(tid), Integer.parseInt(mid), tname, Timestamp.valueOf(startDate + " " + startTime), Double.parseDouble(duration));
+	    if(tid != null && mid != null && tname != null && startDate != null && startTime != null && duration != null && price != null) {
+	    	te = new TourEntity(Integer.parseInt(tid), Integer.parseInt(mid), tname, Timestamp.valueOf(startDate + " " + startTime), Double.parseDouble(duration), Double.parseDouble(price));
 	    }
 	}
 	
@@ -49,6 +50,7 @@
     	<title>Virtual Museum Admin</title>
     	<link href="../css/Header.css" rel="stylesheet" type="text/css">
     	<link href="../css/AddEdit.css" rel="stylesheet" type="text/css">
+    	<link href="../css/Menu.css" rel="stylesheet" type="text/css">
     	<link rel="icon" href="../images/logo.png">
     	<link rel="preconnect" href="https://fonts.googleapis.com">
     	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -77,6 +79,25 @@
                 </form>
             </div>
 		</div>
+		
+		<div class="menu-container">
+			<a class="menu-item right-margin-3" href="Homepage.jsp">
+		        HOME 
+		    </a>
+			<a class="menu-item right-margin-3" href="Museums.jsp">
+		        MUSEUMS
+		    </a>
+		    <a style="background-color: #8b84bf;" class="menu-item left-margin-3 right-margin-3" href="Tours.jsp">
+		        TOURS
+		    </a>
+		    <a class="menu-item left-margin-3 right-margin-3" href="Users.jsp">
+		        USERS
+		    </a>
+		    <a class="menu-item left-margin-3" href="Logs.jsp">
+		        LOGS
+		    </a>
+		</div>
+		
 		<%
 			Date date = new Date(te.getStartDateTime().getTime()); 
       		DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -110,6 +131,10 @@
 	            <div class="museum-edit-single-input">
 	                <label class="museum-edit-input-label" for="duration">Duration (H): </label>
 	                <input class="museum-edit-input-field" name="duration" type="number" step=".5" value="<%= te.getDuration() %>" required>
+	            </div>
+	             <div class="museum-edit-single-input">
+	                <label class="museum-edit-input-label" for="price">Price (EUR): </label>
+	                <input class="museum-edit-input-field" name="price" type="number" step="01" value="<%= te.getPrice() %>" required>
 	            </div>
 	            <div class="museum-edit-single-input margin-botton-4perc">
 	                <input class="museum-edit-input-field" type="submit" value="Update Tour">
