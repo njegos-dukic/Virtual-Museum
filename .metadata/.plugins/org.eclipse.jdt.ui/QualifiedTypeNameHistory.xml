@@ -23,4 +23,5 @@
     <fullyQualifiedTypeName name="org.unibl.etf.virtualbankui.services.CardService"/>
     <fullyQualifiedTypeName name="org.unibl.etf.virtualbankui.entities.CardEntity"/>
     <fullyQualifiedTypeName name="org.unibl.etf.virtualbankui.entities.TransactionEntity"/>
+    <fullyQualifiedTypeName name="org.unibl.etf.virtualmuseum.entities.ArtifactEntity"/>
 </qualifiedTypeNameHistroy>

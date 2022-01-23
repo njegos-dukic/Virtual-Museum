@@ -1,13 +1,15 @@
 package org.unibl.etf.virtualmuseumapi.services;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
-import org.unibl.etf.virtualmuseumapi.model.entities.TourEntity;
-import org.unibl.etf.virtualmuseumapi.model.entities.TransactionEntity;
-import org.unibl.etf.virtualmuseumapi.model.entities.UserEntity;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.File;
 
 @Component
 @AllArgsConstructor
@@ -15,34 +17,30 @@ public class MailService {
 
     private JavaMailSender emailSender;
 
-    @Value("${mail.username}")
-    private final static String EMAIL_FROM = "";
-    private final static String EMAIL_SUBJECT = "Virtual Museum Ticket";
+    private final static String EMAIL_FROM = "njegos.dukic.998@gmail.com";
+    private final static String EMAIL_SUBJECT = "IP Virtual Museum";
 
-    public void sendSimpleMessage(String to, String subject, String text) {
+    public void sendTicket(String recipient, String ticketNumber) throws MessagingException {
+            MimeMessage message = emailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(EMAIL_FROM);
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
-        emailSender.send(message);
+            helper.setFrom(EMAIL_FROM);
+            helper.setTo(recipient);
+            helper.setSubject(EMAIL_SUBJECT);
+            helper.setText("Virtual Museum: Ticket attached.");
+
+            FileSystemResource file = new FileSystemResource(new File("tickets" + File.separator + ticketNumber + ".pdf"));
+            helper.addAttachment("VM Ticket.pdf", file);
+
+            emailSender.send(message);
     }
 
-    public void sendTicket(String recipient, TransactionEntity transaction, TourEntity tour, UserEntity user) {
-
+    public void sendSimpleMail(String recipient, String content) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("njegos.dukic.998@gmail.com");
+        message.setFrom(EMAIL_FROM);
         message.setTo(recipient);
         message.setSubject(EMAIL_SUBJECT);
-        String content = "Virtual Museum Ticket" + "\n\n" +
-                         "\tUser: " + user.getFirstName() + " " + user.getLastName() + "\n" +
-                         "\tTour: " + tour.getName() + " at " + tour.getStart() + "\n" +
-                         "\tPrice: " + tour.getPrice() + " EUR" + "\n" +
-                         "\tTicket number: " + transaction.getTicketNumber() + "\n\n" +
-                         "\tTour link: http://localhost:9000/tours/current/" + tour.getId();
         message.setText(content);
         emailSender.send(message);
     }
-
 }

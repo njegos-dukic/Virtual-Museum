@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="getUri"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="getUri"/>
+			<item value="DATUM I VRIJEME"/>
+			<item value="Datum i vrijeme"/>
+			<item value="]"/>
+			<item value="delete"/>
+			<item value="yt-video-artifact"/>
 			<item value="enable"/>
 			<item value="gif"/>
 			<item value="e1efcc9e9bac7b924ccb5a74af63540f"/>
@@ -17,9 +23,6 @@
 			<item value="maps"/>
 			<item value="loco"/>
 			<item value="locoa"/>
-			<item value="locoation"/>
-			<item value="console"/>
-			<item value=" on"/>
 		</list>
 		<list key="replacehistory">
 		</list>

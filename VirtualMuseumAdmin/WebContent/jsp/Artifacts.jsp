@@ -1,5 +1,7 @@
 <%@ page import="org.unibl.etf.virtualmuseum.services.TourService"%>
 <%@ page import="org.unibl.etf.virtualmuseum.entities.TourEntity"%>
+<%@ page import="org.unibl.etf.virtualmuseum.services.ArtifactService"%>
+<%@ page import="org.unibl.etf.virtualmuseum.entities.ArtifactEntity"%>
 <%@ page import="org.unibl.etf.virtualmuseum.beans.UserBean"%>
 <%@ page import="java.util.stream.Stream"%>
 <%@ page import="java.util.stream.Collectors"%>
@@ -65,6 +67,7 @@
     	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 				
 	
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 	
 		<script>
 		 		$(document).ready(function () {
@@ -152,7 +155,7 @@
 			<hr>
 			<hr>
 			<%
-			try (Stream<Path> paths = Files.walk(Paths.get("C:\\Users\\njego\\Desktop\\IP\\projektni-zadatak-2022\\VirtualMuseumAdmin\\WebContent\\WEB-INF\\artifacts\\" + artifactId))) {
+				try (Stream<Path> paths = Files.walk(Paths.get("C:\\Users\\njego\\Desktop\\IP\\projektni-zadatak-2022\\VirtualMuseumAdmin\\WebContent\\WEB-INF\\artifacts\\" + artifactId))) {
 				    List<File> files = paths 
 					        				.filter(Files::isRegularFile)
 					        				.map(f -> new File(f.toString()))
@@ -182,7 +185,14 @@
 					<%	}
 				    }
 				} 
-			%>
+				
+				for (ArtifactEntity ae : ArtifactService.selectAllYtByTourId(Integer.parseInt(artifactId))) { %>
+					<div style="display: flex; align-items: center; justify-content: center;">
+						<p>Youtube link: <a href="<%= ae.getUri() %>" target="_blank"><%= ae.getUri() %></a></p>
+					</div>
+					<hr>
+					<hr>
+			<% } %>
 			
 			<div class="museum-edit-container">
 				<form id="add-tour" action="UpdateArtifact.jsp" method="post" class="museum-edit-form" enctype="multipart/form-data">
@@ -199,7 +209,7 @@
 	            	</div>
 	            	<div class="museum-edit-single-input">
 		                <label class="museum-edit-input-label" for="yt-video-artifact">YouTube video artifact: </label>
-		                <input id="yt-video-uploader" class="museum-edit-input-field" name="yt-video-artifacts" type="text">
+		                <input id="yt-video-uploader" class="museum-edit-input-field" name="yt-video-artifact" type="text">
 		            </div>
 	            	<div class="museum-edit-single-input margin-botton-4perc">
 	                	<input class="museum-edit-input-field" type="submit" onclick="return beforeSubmit()" value="UPDATE ARTIFACTS">

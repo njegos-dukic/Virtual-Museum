@@ -1,5 +1,6 @@
 <%@ page import="org.unibl.etf.virtualmuseum.entities.TourEntity"%>
 <%@ page import="org.unibl.etf.virtualmuseum.services.TourService"%>
+<%@ page import="org.unibl.etf.virtualmuseum.services.ArtifactService"%>
 <%@ page import="org.unibl.etf.virtualmuseum.entities.MuseumEntity"%>
 <%@ page import="org.unibl.etf.virtualmuseum.services.MuseumService"%>
 <%@ page import="java.util.Date"%>
@@ -57,6 +58,7 @@
 	        TourEntity te = new TourEntity();
 	        String dateString = "";
 	        String timeString = "";
+	        String youtubeLink = null;
 	        for (FileItem item : items) {
 	            if (item.isFormField()) {
 	                String fieldName = item.getFieldName();
@@ -73,6 +75,8 @@
 	                	te.setDuration(Double.parseDouble(fieldValue));
 	                else if ("price".equals(fieldName))
 	                	te.setPrice(Double.parseDouble(fieldValue));
+	                else if ("yt-video-artifact".equals(fieldName)) 
+						youtubeLink = fieldValue;
 	            } else {
 	                String fieldName = item.getFieldName();
 	                String fileName = FilenameUtils.getName(item.getName());
@@ -81,14 +85,21 @@
 	            }
 	        }
 	        
+	        System.out.println("DATUM I VRIJEME JE: " + dateString + " " + timeString + ":00");
 	        te.setStartDateTime(Timestamp.valueOf(dateString + " " + timeString + ":00"));
 	        boolean success = TourService.insert(te);
 	        
 	        if (success) {
+	        	if (youtubeLink != null && !"".equals(youtubeLink)) {
+	        		ArtifactService.insertArtifact(youtubeLink, "ytube", te.getId());
+	        	}
 				File folder = new File("C:\\Users\\njego\\Desktop\\IP\\projektni-zadatak-2022\\VirtualMuseumAdmin\\WebContent\\WEB-INF\\artifacts\\" + te.getId());
 				FileUtils.deleteDirectory(folder);
 				folder.mkdir();
 				
+				// File name: entry.getKey()
+				// Tour ID: te.getId()
+				// File input stream: entry.getValue()
 		        for (HashMap.Entry<String, InputStream> entry : inputStreams.entrySet()) {	        	
 		        	try {
 						InputStream inputStream = entry.getValue();
@@ -99,6 +110,10 @@
 		    	        while ((read = inputStream.read(bytes)) != -1) {
 		    	            outputStream.write(bytes, 0, read);
 		    	        }
+		    	        
+		    	        String type = entry.getKey().toLowerCase().contains("png") ? "img" : "vid";
+		    	        ArtifactService.insertArtifact(entry.getKey(), type, te.getId());
+		    	        
 		    	        outputStream.close();
 		    	        inputStream.close();
 		            } catch (Exception e) {
@@ -254,7 +269,7 @@
 	            </div>
 	             <div class="museum-edit-single-input">
 	                <label class="museum-edit-input-label" for="yt-video-artifact">YouTube video artifact: </label>
-	                <input id="yt-video-uploader" class="museum-edit-input-field" name="yt-video-artifacts" type="text">
+	                <input id="yt-video-uploader" class="museum-edit-input-field" name="yt-video-artifact" type="text">
 	            </div>
 	            <div class="museum-edit-single-input margin-botton-4perc">
 	                <input class="museum-edit-input-field" type="submit" onclick="return beforeSubmit()" value="Add Tour">

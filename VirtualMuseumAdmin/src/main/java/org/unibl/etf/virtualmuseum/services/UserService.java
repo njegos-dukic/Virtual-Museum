@@ -18,9 +18,11 @@ public class UserService {
 	private static final String SQL_UPDATE = "UPDATE VirtualMuseum.USER SET username = ?, firstName = ?, lastName = ?, email = ? WHERE id = ?";
 	private static final String SQL_TOGGLE_ADMIN = "UPDATE VirtualMuseum.USER SET isAdmin = NOT isAdmin WHERE id = ?";
 	private static final String SQL_TOGGLE_APPROVED = "UPDATE VirtualMuseum.USER SET isApproved = NOT isApproved WHERE id = ?";
-	private static final String SQL_TOGGLE_BLOCKED = "UPDATE VirtualMuseum.USER SET isBlocked = NOT isBlocked WHERE id = ?";
+	private static final String SQL_TOGGLE_BLOCKED = "UPDA+TE VirtualMuseum.USER SET isBlocked = NOT isBlocked WHERE id = ?";
 	private static final String SQL_TOGGLE_PASSWORD_RESET = "UPDATE VirtualMuseum.USER SET isPasswordReset = NOT isPasswordReset WHERE id = ?";
 	private static final String SQL_DELETE = "DELETE FROM VirtualMuseum.USER WHERE id = ?";
+	private static final String SQL_SELECT_LOGGED_IN = "SELECT COUNT(*) AS count FROM VirtualMuseum.USER WHERE isLoggedIn IS TRUE";
+	private static final String SQL_SELECT_TOTAL = "SELECT COUNT(*) AS count FROM VirtualMuseum.USER";
 	
 	public static ArrayList<UserEntity> selectAll(){
 		ArrayList<UserEntity> retVal = new ArrayList<UserEntity>();
@@ -192,5 +194,47 @@ public class UserService {
 			connectionPool.checkIn(connection);
 		}
 		return retVal;
+	}
+	
+	public static Integer selectLoggedInCount(){
+		Connection connection = null;
+		ResultSet rs = null;
+		Object values[] = {};
+		Integer returnValue = 0;
+		try {
+			connection = connectionPool.checkOut();
+			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection, SQL_SELECT_LOGGED_IN, false, values);
+			rs = pstmt.executeQuery();
+			while (rs.next()){
+				returnValue = rs.getInt("count");
+			}
+			pstmt.close();
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		} finally {
+			connectionPool.checkIn(connection);
+		}
+		return returnValue;
+	}
+	
+	public static Integer selectTotalCount(){
+		Connection connection = null;
+		ResultSet rs = null;
+		Object values[] = {};
+		Integer returnValue = 0;
+		try {
+			connection = connectionPool.checkOut();
+			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection, SQL_SELECT_TOTAL, false, values);
+			rs = pstmt.executeQuery();
+			while (rs.next()){
+				returnValue = rs.getInt("count");
+			}
+			pstmt.close();
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		} finally {
+			connectionPool.checkIn(connection);
+		}
+		return returnValue;
 	}
 }

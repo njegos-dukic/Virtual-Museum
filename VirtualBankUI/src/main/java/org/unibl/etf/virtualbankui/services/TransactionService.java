@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.unibl.etf.virtualbankui.entities.CardEntity;
 import org.unibl.etf.virtualbankui.entities.TransactionEntity;
 import org.unibl.etf.virtualbankui.services.utils.ConnectionPool;
 import org.unibl.etf.virtualbankui.services.utils.ServiceUtil;

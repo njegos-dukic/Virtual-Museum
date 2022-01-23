@@ -29,7 +29,7 @@
 		</div>
 		
 		<div class="museum-edit-container">
-	        <form action="Museums.jsp" method="post" class="museum-edit-form">
+	        <form action="Homepage.jsp" method="post" class="museum-edit-form">
 	            <div class="museum-edit-single-input">
 	                <label class="museum-edit-input-label" for="username">Username: </label>
 	                <input class="museum-edit-input-field" name="username" type="text" required>

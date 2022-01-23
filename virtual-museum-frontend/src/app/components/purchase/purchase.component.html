@@ -1,0 +1,49 @@
+<ng-container *ngIf="tour"> 
+  <main class="form-signin">
+    <form data-bitwarden-watching="1">
+      <h1 class="h3 mb-3 fw-normal">Enter card info</h1>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingFirstName" placeholder="First name">
+        <label for="floatingFirstName">First name</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingLastName" placeholder="Last name">
+        <label for="floatingLastName">Last name</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="cardRadio" id="visaRadio" value="VISA">
+        <label class="form-check-label" for="visaRadio">
+          VISA
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="cardRadio" id="masterRadio" value="MASTERCARD">
+        <label class="form-check-label" for="masterRadio">
+          MASTERCARD
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="cardRadio" id="amexRadio" value="AMERICAN EXPRESS">
+        <label class="form-check-label" for="amexRadio">
+          AMERICAN EXPRESS
+        </label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingCardNumber" placeholder="Card number">
+        <label for="floatingCardNumber">Card number</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingCVV" placeholder="CVV">
+        <label for="floatingCVV">CVV</label>
+      </div>
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Email</label>
+      </div>
+      <div class="form-floating">
+          <div><b>Price: {{ tour.price }} EUR</b></div>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary top-mrgn-10" type="submit">Purchase</button>
+    </form>
+  </main>
+</ng-container>
