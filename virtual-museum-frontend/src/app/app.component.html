@@ -17,8 +17,10 @@
       </ul>
 
       <div class="text-end">
-        <button type="button" class="btn btn-outline-light me-2" (click)="goToPage('login')">Login</button>
-        <button type="button" class="btn btn-warning" (click)="goToPage('register')">Register</button>
+        <button type="button" class="btn btn-outline-light me-2" *ngIf="!loginService.loggedIn()" (click)="goToPage('login')">Login</button>
+        <button type="button" class="btn btn-warning" *ngIf="!loginService.loggedIn()" (click)="goToPage('register')">Register</button>
+        <button type="button" class="btn btn-outline-light me-2" *ngIf="loginService.isAdmin()" (click)="openAdminPage()">Admin</button>
+        <button type="button" class="btn btn-warning" *ngIf="loginService.loggedIn()" (click)="logout()">Log out</button>
       </div>
     </div>
   </div>

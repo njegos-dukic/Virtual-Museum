@@ -26,7 +26,8 @@
     
     String toggleAdmin = request.getParameter("toggle-admin-id");
     if (toggleAdmin != null) {
-    	UserService.toggleAdmin(Integer.parseInt(toggleAdmin));
+    	String toggleAdminIsAdmin = request.getParameter("toggle-admin-is-admin");
+    	UserService.toggleAdmin(Integer.parseInt(toggleAdmin), "true".equals(toggleAdminIsAdmin));
     }
     
     String toggleApproved = request.getParameter("toggle-approved-id");
@@ -166,6 +167,7 @@
 			        <div style="width: 6.66%; justify-content: center; " class="content-custom-table-column content-custom-table-data-column-color left-right-margin-2">
 			        	<form style="height: min(calc(8px + 1.5vw), 16px);" action="#" method=post>
 			        		<input type="hidden" name="toggle-admin-id" value="<%= ue.getId() %>" />
+			        		<input type="hidden" name="toggle-admin-is-admin" value="<%= ue.isAdmin() ? "true" : "false" %>" />
 			        		<input type="image" style="height: min(calc(8px + 1.5vw), 16px);" src="../images/<%= ue.isAdmin() ? "check.png" : "cancel.png" %>" />
 			        	</form>
 			        </div>

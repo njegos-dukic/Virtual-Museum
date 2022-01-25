@@ -16,4 +16,8 @@ public class TransactionService {
     public TransactionEntity insert(TransactionEntity transactionEntity) {
         return transactionRepository.saveAndFlush(transactionEntity);
     }
+
+    public TransactionEntity getTransactionEntityByTicketNumberAndTourIdAndUserId(String ticketNumber, Integer tourId, Integer userId) {
+        return transactionRepository.getTransactionEntityByTicketNumberAndTourIdAndUserId(ticketNumber, tourId, userId);
+    }
 }

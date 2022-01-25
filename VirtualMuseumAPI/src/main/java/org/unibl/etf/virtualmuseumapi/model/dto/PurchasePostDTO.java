@@ -1,6 +1,7 @@
 package org.unibl.etf.virtualmuseumapi.model.dto;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Email;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Size;
 
 @Data
 @Validated
+@ToString
 public class PurchasePostDTO {
 
     @NotNull

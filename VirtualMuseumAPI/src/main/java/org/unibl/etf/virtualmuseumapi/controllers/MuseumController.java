@@ -3,8 +3,10 @@ package org.unibl.etf.virtualmuseumapi.controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.unibl.etf.virtualmuseumapi.exceptions.UnauthorizedException;
 import org.unibl.etf.virtualmuseumapi.model.entities.MuseumEntity;
 import org.unibl.etf.virtualmuseumapi.services.AuthenticationService;
+import org.unibl.etf.virtualmuseumapi.services.LogService;
 import org.unibl.etf.virtualmuseumapi.services.MuseumService;
 
 import javax.validation.constraints.Size;
@@ -18,11 +20,12 @@ public class MuseumController {
 
     private final MuseumService museumService;
     private final AuthenticationService authenticationService;
+    private final LogService logService;
 
     @GetMapping
     public List<MuseumEntity> getAll(@RequestHeader(value = "clientId", required = false) String username, @RequestHeader(value = "clientPassword", required = false) String password, @RequestParam(required = false) @Size(min = 3, message = "Query parameter must be at least 3 characters long.") String query) {
-//        if (authenticationService.credentialsValid(username, password))
-//            throw new UnauthorizedException("Invalid credentials.");
+        if (authenticationService.credentialsValid(username, password))
+            throw new UnauthorizedException("Invalid credentials.");
 
         if (query != null)
             return museumService.getAllByNameOrCity(query);
@@ -32,8 +35,8 @@ public class MuseumController {
 
     @GetMapping("/{id}")
     public MuseumEntity getById(@RequestHeader(value = "clientId", required = false) String username, @RequestHeader(value = "clientPassword", required = false) String password, @PathVariable Integer id) {
-//        if (authenticationService.credentialsValid(username, password))
-//            throw new UnauthorizedException("Invalid credentials.");
+        if (authenticationService.credentialsValid(username, password))
+            throw new UnauthorizedException("Invalid credentials.");
 
         return museumService.getById(id);
     }

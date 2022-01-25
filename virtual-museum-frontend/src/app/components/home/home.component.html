@@ -1,3 +1,16 @@
-<div *ngFor="let item of items">
-    {{ item.title }}
-</div>
+<ng-container *ngIf="rss">
+    <div class="list-group" *ngFor="let item of rss.items">
+        <div class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+            <div class="d-flex gap-2 w-100 justify-content-between">
+                <div>
+                    <h6 class="mb-0"><b>{{ item.title }}</b></h6>
+                    <hr>
+                    <p class="mb-0 opacity-55">{{ item.content }}</p>
+                    <hr>
+                    <p class="mb-0 opacity-55"><a [attr.href]='item.link' target='_blank'>Read more..</a></p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

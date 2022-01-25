@@ -17,7 +17,7 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Integer id = 0;
 
     @Column(name = "username", nullable = false, length = 50)
     private String username;
@@ -34,11 +34,14 @@ public class UserEntity {
     @Column(name = "email", nullable = false, length = 128)
     private String email;
 
+    @Column(name = "isLoggedIn", nullable = false)
+    private Boolean isLoggedIn = false;
+
     @Column(name = "isAdmin", nullable = false)
-    private Integer isAdmin;
+    private Boolean isAdmin = false;
 
     @Column(name = "adminToken", length = 256)
-    private String adminToken;
+    private String adminToken = null;
 
     @Column(name = "isApproved", nullable = false)
     private Boolean isApproved = false;

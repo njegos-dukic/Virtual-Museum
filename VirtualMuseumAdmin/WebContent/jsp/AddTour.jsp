@@ -85,7 +85,6 @@
 	            }
 	        }
 	        
-	        System.out.println("DATUM I VRIJEME JE: " + dateString + " " + timeString + ":00");
 	        te.setStartDateTime(Timestamp.valueOf(dateString + " " + timeString + ":00"));
 	        boolean success = TourService.insert(te);
 	        

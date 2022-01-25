@@ -6,7 +6,9 @@ import { MuseumComponent } from './components/museum/museum.component';
 import { MuseumsComponent } from './components/museums/museums.component';
 import { PurchaseComponent } from './components/purchase/purchase.component';
 import { RegisterComponent } from './components/register/register.component';
+import { TourComponent } from './components/tour/tour.component';
 import { ToursComponent } from './components/tours/tours.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -16,23 +18,33 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'purchase/:tourId',
-    component: PurchaseComponent
+    component: PurchaseComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'tour/:tourId',
+    component: TourComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'museums',
-    component: MuseumsComponent
+    component: MuseumsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'museum/:museumId',
-    component: MuseumComponent
+    component: MuseumComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'tours',
-    component: ToursComponent
+    component: ToursComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',

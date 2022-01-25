@@ -1,0 +1,53 @@
+<ng-container *ngIf="tour">
+<div class="list-group">
+    <div class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+        <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+                <h6 class="mb-0"><b>{{ tour.name }} at {{ tour.museum.name }}</b></h6>
+                <hr>
+                <p class="mb-0 opacity-55">Start: {{ tour.start.getDate() }}.{{ tour.start.getMonth() + 1 }}.{{ tour.start.getFullYear() }}. at {{ tour.start.getHours() }}:{{ (tour.start.getMinutes() < 10 ? '0' : '') }}{{ tour.start.getMinutes() }}h</p>
+                <p class="mb-0 opacity-55">Duration: {{ tour.duration }}h</p>
+                <p class="mb-0 opacity-55">Price: {{ tour.price }} EUR</p>
+                <hr>
+                    <div class="form-floating">
+                        <input type="text" required [(ngModel)]="ticketNumber" [ngModelOptions]="{standalone: true}" class="form-control" id="floatingTicketNumber" placeholder="Ticket number">
+                        <label for="floatingTicketNumber">Ticket number</label>
+                    </div>
+            </div>
+            <div style="display: flex; align-items: flex-end; justify-content: flex-end; flex-direction: column;">
+                <div style="display: flex; align-items: flex-end; justify-content: center;">
+                    <button style="height: 50px;" (click)="getArtifacts()" class="w-60 btn btn-lg btn-primary" type="submit">See tour</button>
+                </div>
+                <hr>
+                <div style="display: flex; align-items: flex-end; justify-content: center;">
+                    <p style="color: red;">{{ error }}</p>
+                    <p style="color: green;">{{ success }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</ng-container>
+<hr>
+<ng-container *ngIf="artifacts">
+    <div class="list-group" *ngFor="let artifact of artifacts">
+        <div class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+            <div style="display: flex; align-items: center; justify-content: center;" class="d-flex gap-2 w-100">
+                <div>
+                    <img *ngIf="isImage(artifact)" [src]="artifact.base64" width="350px" />
+                    <video *ngIf="isVideo(artifact)" controls autoplay [src]="artifact.base64" width="350px">
+                    </video>
+                    <youtube-player *ngIf="isYoutube(artifact)"
+                        [videoId]="artifact.uri" 
+                        suggestedQuality="highres" 
+                        [width]="350">
+                    </youtube-player>
+                    <hr>
+                    <div style="display: flex; align-items: end; justify-content: center;">
+                        <p>{{artifact.name}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

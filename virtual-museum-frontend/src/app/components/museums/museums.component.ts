@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Museum } from '../../interfaces/museum';
 import { MuseumService } from '../../services/museum/museum.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-museums',
@@ -13,10 +14,11 @@ export class MuseumsComponent implements OnInit {
   filteredMuseums: Museum[] = [];
   filterString: string = '';
 
-  constructor(private museumService: MuseumService) { }
+  constructor(private museumService: MuseumService, private router: Router) { }
 
   ngOnInit(): void {
-    this.museumService.getMuseums().subscribe((museums) => { this.museums = museums; this.filteredMuseums = museums; });
+    this.museumService.getMuseums().subscribe((museums) => { this.museums = museums; this.filteredMuseums = museums; },
+    err => this.router.navigate(['login']));
   }
 
   resetFilteredMuseums(): void {

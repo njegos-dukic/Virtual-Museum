@@ -15,7 +15,7 @@ public class ArtifactService {
 	private static ConnectionPool connectionPool = ConnectionPool.getConnectionPool();
 	
 	private static final String SQL_SELECT_ALL_YT_BY_TOUR_ID = "SELECT * FROM ARTIFACT a WHERE a.type LIKE '%ytube%' AND a.tourId = ?";
-	private static final String SQL_INSERT_ARTIFACT = "INSERT INTO ARTIFACT (uri, type, tourId) VALUES (?, ?, ?)";
+	private static final String SQL_INSERT_ARTIFACT = "INSERT INTO VirtualMuseum.ARTIFACT (uri, type, tourId) VALUES (?, ?, ?)";
 	private static final String SQL_DELETE_ARTIFACT_BY_TOUR = "DELETE FROM ARTIFACT WHERE tourId = ?";
 	
 	public static ArrayList<ArtifactEntity> selectAllYtByTourId(int tourId){
@@ -49,7 +49,7 @@ public class ArtifactService {
 		try {
 			connection = connectionPool.checkOut();
 			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection, SQL_INSERT_ARTIFACT, true, values);
-			int affectedRows = pstmt. executeUpdate();
+			int affectedRows = pstmt.executeUpdate();
 			if (affectedRows == 0)
 				retVal = false;
 			else

@@ -1,19 +1,23 @@
-
-<div class="list-group">
-    <div class="d-flex gap-2 w-100 justify-content-between">
-        <input type="text" class="list-group-item list-group-item-action d-flex gap-3 py-3" name="filterString" [(ngModel)]="filterString" (ngModelChange)="searchMuseums($event)" placeholder="Search..." aria-label="Search">
-    </div>
-</div>
-
-<div class="list-group" *ngFor="let museum of filteredMuseums">
-    <a [attr.href]="'/museum/' + museum.museumId" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+<ng-container *ngIf="filteredMuseums">
+    <div class="list-group">
         <div class="d-flex gap-2 w-100 justify-content-between">
-            <div>
-                <h6 class="mb-0"><b>{{ museum.name }}</b></h6>
-                <p class="mb-0 opacity-55">{{ museum.type }}</p>
-                <p class="mb-0 opacity-55">{{ museum.address }}</p>
-                <p class="mb-0 opacity-55">{{ museum.city }}, {{ museum.country }}</p>
-            </div>
+            <input type="text" class="list-group-item list-group-item-action d-flex gap-3 py-3" name="filterString" [(ngModel)]="filterString" (ngModelChange)="searchMuseums($event)" placeholder="Search..." aria-label="Search">
         </div>
-    </a>
-</div>
+    </div>
+
+    <div class="list-group" *ngFor="let museum of filteredMuseums">
+        <a [attr.href]="'/museum/' + museum.museumId" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+            <div class="d-flex gap-2 w-100 justify-content-between">
+                <div>
+                    <h6 class="mb-0"><b>{{ museum.name }}</b></h6>
+                    <hr>
+                    <p class="mb-0 opacity-55">{{ museum.type }}</p>
+                    <p class="mb-0 opacity-55">{{ museum.address }}</p>
+                    <p class="mb-0 opacity-55">{{ museum.city }}, {{ museum.country }}</p>
+                    <hr>
+                    <app-maps [lat]='museum.lat' [lng]='museum.lng'></app-maps>
+                </div>
+            </div>
+        </a>
+    </div>
+</ng-container>

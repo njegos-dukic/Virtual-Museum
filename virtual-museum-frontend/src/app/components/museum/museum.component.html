@@ -4,17 +4,15 @@
             <div class="d-flex gap-2 w-100 justify-content-between">
                 <div>
                     <h6 class="mb-0"><b>{{ museum.name }}</b></h6>
+                    <hr>
                     <p class="mb-0 opacity-55">{{ museum.type }}</p>
                     <p class="mb-0 opacity-55">{{ museum.address }}</p>
                     <p class="mb-0 opacity-55">{{ museum.city }}, {{ museum.country }}</p>
-                    <!-- <iframe
-                        width="450"
-                        height="250"
-                        frameborder="0" style="border:0"
-                        [attr.src]="'https://www.google.com/maps/embed/v1/view?key=AIzaSyCN2ri-N8fFuE2KEdSdBU40Nxd39vkbY28&center=' + museum.lat + ',' + museum.lng + '&zoom=18&maptype=satellite'">
-                    </iframe> -->
+                    <hr>
+                    <app-maps [lat]='museum.lat' [lng]='museum.lng'></app-maps>
                 </div>
             </div>
+
         </div>
     </div>
     <hr>
@@ -23,6 +21,7 @@
             <div class="d-flex gap-2 w-100 justify-content-between">
                 <div>
                     <h6 class="mb-0"><b>{{ tour.name }} at {{ museum.name }}</b></h6>
+                    <hr>
                     <p class="mb-0 opacity-55">Start: {{ tour.start.getDate() }}.{{ tour.start.getMonth() + 1 }}.{{ tour.start.getFullYear() }}. at {{ tour.start.getHours() }}:{{ (tour.start.getMinutes() < 10 ? '0' : '') }}{{ tour.start.getMinutes() }}h</p>
                     <p class="mb-0 opacity-55">Duration: {{ tour.duration }}h</p>
                     <p class="mb-0 opacity-55">Price: {{ tour.price }} EUR</p>
@@ -39,6 +38,7 @@
             <div class="d-flex gap-2 w-100 justify-content-between">
                 <div>
                     <h6 class="mb-0"><b>City: {{ w.name }}</b></h6>
+                    <hr>
                     <p class="mb-0 opacity-55">Temperature: {{ w.main.temp }} °C</p>
                     <p class="mb-0 opacity-55">Feels like: {{ w.main.feels_like }} °C</p>
                     <p class="mb-0 opacity-55">Wind: {{ w.wind.speed }} km/h</p>

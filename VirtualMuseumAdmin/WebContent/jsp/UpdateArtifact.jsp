@@ -97,6 +97,7 @@
 	    	        
 	    	        response.sendRedirect("Artifacts.jsp?tour-id=" + artifactId);
 	            } catch (Exception e) {
+	            	e.printStackTrace();
 	            	assert(true);
 	            }
 	        }

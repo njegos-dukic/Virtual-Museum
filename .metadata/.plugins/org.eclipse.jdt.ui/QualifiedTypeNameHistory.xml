@@ -24,4 +24,11 @@
     <fullyQualifiedTypeName name="org.unibl.etf.virtualbankui.entities.CardEntity"/>
     <fullyQualifiedTypeName name="org.unibl.etf.virtualbankui.entities.TransactionEntity"/>
     <fullyQualifiedTypeName name="org.unibl.etf.virtualmuseum.entities.ArtifactEntity"/>
+    <fullyQualifiedTypeName name="org.unibl.etf.virtualmuseum.services.UserService"/>
+    <fullyQualifiedTypeName name="org.unibl.etf.virtualmuseum.beans.UserBean"/>
+    <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="org.unibl.etf.virtualmuseum.entities.ReportEntity"/>
+    <fullyQualifiedTypeName name="org.unibl.etf.virtualmuseum.entities.LogEntity"/>
+    <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

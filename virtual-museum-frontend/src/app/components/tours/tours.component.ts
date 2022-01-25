@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Tour } from '../../interfaces/tour';
 import { TourService } from '../../services/tour/tour.service';
 import { MuseumService } from '../../services/museum/museum.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tours',
@@ -14,7 +15,7 @@ export class ToursComponent implements OnInit {
   filteredTours: Tour[] = [];
   filterString: string = '';
 
-  constructor(private tourService: TourService, private museumService: MuseumService) { }
+  constructor(private tourService: TourService, private museumService: MuseumService, private router: Router) { }
 
   ngOnInit(): void {
     this.tourService.getCurrentTours().subscribe((tours) => { 
@@ -22,9 +23,10 @@ export class ToursComponent implements OnInit {
       this.tours.forEach(t => {
         t.start = new Date(t.start);
         this.museumService.getMuseumById(t.museumId).subscribe(museum => t.museumName = museum.name);
-      })
-      this.filteredTours = tours; 
-    });
+      }, 
+      this.filteredTours = tours); 
+    },
+    err => this.router.navigate(['login']));
   }
 
   resetFilteredTours(): void {

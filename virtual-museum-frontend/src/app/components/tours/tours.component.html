@@ -5,10 +5,11 @@
 </div>
 
 <div class="list-group" *ngFor="let tour of filteredTours">
-    <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+    <a [attr.href]="'/tour/' + tour.id" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
         <div class="d-flex gap-2 w-100 justify-content-between">
             <div>
                 <h6 class="mb-0"><b>{{ tour.name }} at {{ tour.museumName }}</b></h6>
+                <hr>
                 <p class="mb-0 opacity-55">Start: {{ tour.start.getDate() }}.{{ tour.start.getMonth() + 1 }}.{{ tour.start.getFullYear() }}. at {{ tour.start.getHours() }}:{{ (tour.start.getMinutes() < 10 ? '0' : '') }}{{ tour.start.getMinutes() }}h</p>
                 <p class="mb-0 opacity-55">Duration: {{ tour.duration }}h</p>
                 <p class="mb-0 opacity-55">Price: {{ tour.price }} EUR</p>

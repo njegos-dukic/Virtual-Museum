@@ -2,18 +2,10 @@
 <%@ page import="org.unibl.etf.virtualmuseum.entities.MuseumEntity"%>
 <%@ page import="org.unibl.etf.virtualmuseum.beans.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="user" scope="session" class="org.unibl.etf.virtualmuseum.beans.UserBean">
-	<jsp:setProperty name="user" property= "username" value=""/> 
-	<jsp:setProperty name="user" property= "password" value=""/> 
-</jsp:useBean>  
+<jsp:useBean id="user" scope="session" class="org.unibl.etf.virtualmuseum.beans.UserBean"/>  
+
  
 <%
-	if (request.getParameter("username") != null && request.getParameter("password") != null) {
-		user.setUsername(request.getParameter("username"));
-		user.setPassword(request.getParameter("password"));
-		user.login();
-	}
-
 	if (!user.isLoggedIn()) {
 		response.sendRedirect("Login.jsp");
 	}

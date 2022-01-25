@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
+<%
+	String adminToken = request.getParameter("adminToken");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>

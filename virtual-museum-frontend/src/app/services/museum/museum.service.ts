@@ -20,7 +20,7 @@ export class MuseumService {
   constructor(private http: HttpClient) { }
 
   getMuseums(): Observable<Museum[]> {
-    return this.http.get<Museum[]>(this.apiURL, httpOptions);
+    return this.http.get<Museum[]>(this.apiURL);
   }
 
   getMuseumById(id: number): Observable<Museum> {

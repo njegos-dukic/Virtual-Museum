@@ -1,8 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="org.unibl.etf.virtualmuseum.services.ReportService"%>
+<%@ page import="org.unibl.etf.virtualmuseum.entities.ReportEntity"%>
 <%@ page import="org.unibl.etf.virtualmuseum.services.UserService"%>
-<jsp:useBean id="user" scope="session" class="org.unibl.etf.virtualmuseum.beans.UserBean"/>  
-
+<jsp:useBean id="user" scope="session" class="org.unibl.etf.virtualmuseum.beans.UserBean">
+	<jsp:setProperty name="user" property= "username" value=""/> 
+	<jsp:setProperty name="user" property= "password" value=""/> 
+</jsp:useBean>  
 <%  
+	if (request.getParameter("username") != null && request.getParameter("password") != null) {
+		user.setUsername(request.getParameter("username"));
+		user.setPassword(request.getParameter("password"));
+		user.login();
+	}
+	
+	if (request.getParameter("adminToken") != null) {
+		user.setUsername("");
+		user.setPassword("");
+		user.setAdminToken(request.getParameter("adminToken"));
+		user.login();
+	}
+	
 	if (!user.isLoggedIn()) {
 		response.sendRedirect("Login.jsp");
 	}
@@ -72,9 +89,16 @@
 		    </a>
 		</div>
 		
+		<div style="width: 100%; margin-top: 15px">
+			<div style="background-color: lightgreen; padding: 15px; display: flex; align-items: center; justify-content: flex-start;" class="menu-item right-margin-3">
+				<p>Registrovanih korisnika: <%= UserService.selectTotalCount() %></p>
+		    </div>
+			<div style="background-color: lightgreen; padding: 15px; display: flex; align-items: center; justify-content: flex-start; margin-top: 15px; margin-bottom: 10px" class="menu-item lef-tmargin-3 right-margin-3">
+		        <p>Aktivnih korisnika: <%= UserService.selectLoggedInCount() %></p>
+		    </div>
+		</div>
 		
-		<p>Ukupan broj registrovanih korisnika: <%= UserService.selectTotalCount() %></p>
-		<p>Trenutno aktivni korisnici: <%= UserService.selectLoggedInCount() %></p>
+		
 		<div style="width: 80%" >
 			<canvas id="myChart" ></canvas>
 		</div>
@@ -83,26 +107,11 @@
 		const myChart = new Chart(ctx, {
 		    type: 'bar',
 		    data: {
-		        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+		    	
+		        labels: [<% for (ReportEntity re : ReportService.selectAll()) { %> <%= "'" + re.getDate() + " at " + re.getHour() + "h', " %> <% } %>],
 		        datasets: [{
-		            label: '# of Votes',
-		            data: [12, 19, 3, 5, 2, 3],
-		            backgroundColor: [
-		                'rgba(255, 99, 132, 0.2)',
-		                'rgba(54, 162, 235, 0.2)',
-		                'rgba(255, 206, 86, 0.2)',
-		                'rgba(75, 192, 192, 0.2)',
-		                'rgba(153, 102, 255, 0.2)',
-		                'rgba(255, 159, 64, 0.2)'
-		            ],
-		            borderColor: [
-		                'rgba(200, 99, 132, 1)',
-		                'rgba(54, 162, 235, 1)',
-		                'rgba(255, 206, 86, 1)',
-		                'rgba(75, 192, 192, 1)',
-		                'rgba(153, 102, 255, 1)',
-		                'rgba(255, 159, 64, 1)'
-		            ],
+		            label: '# of Logins',
+		            data: [<% for (ReportEntity re : ReportService.selectAll()) { %> <%= re.getCount() + "," %> <% } %>],
 		            borderWidth: 1
 		        }]
 		    },

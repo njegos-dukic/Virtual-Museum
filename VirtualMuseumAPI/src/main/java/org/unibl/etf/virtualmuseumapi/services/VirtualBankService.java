@@ -111,11 +111,11 @@ public class VirtualBankService {
     }
 
     private boolean validateCardInfo(PurchasePostDTO purchasePostDTO, CardEntity cardEntity) {
-        return purchasePostDTO.getFirstName().toUpperCase().equals(cardEntity.getFirstName().toUpperCase()) &&
-               purchasePostDTO.getLastName().toUpperCase().equals(cardEntity.getLastName().toUpperCase()) &&
-               purchasePostDTO.getCardType().toUpperCase().equals(cardEntity.getCardType().toUpperCase()) &&
-               purchasePostDTO.getExpirationDate().toUpperCase().equals(cardEntity.getExpirationDate().toUpperCase()) &&
-               purchasePostDTO.getCvv().toUpperCase().equals(cardEntity.getCvv().toUpperCase());
+        return purchasePostDTO.getFirstName().equalsIgnoreCase(cardEntity.getFirstName()) &&
+               purchasePostDTO.getLastName().equalsIgnoreCase(cardEntity.getLastName()) &&
+               purchasePostDTO.getCardType().equalsIgnoreCase(cardEntity.getCardType()) &&
+               purchasePostDTO.getExpirationDate().equalsIgnoreCase(cardEntity.getExpirationDate()) &&
+               purchasePostDTO.getCvv().equalsIgnoreCase(cardEntity.getCvv());
     }
 
     private boolean checkFunds(CardEntity cardEntity, TourEntity tourEntity) {

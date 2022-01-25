@@ -17,8 +17,7 @@ public class TourService {
 	private static final String SQL_INSERT_TOUR = "INSERT INTO TOUR (name, start, duration, price, museumId) VALUES (?, ?, ?, ?, ?)";
 	private static final String SQL_UPDATE = "UPDATE TOUR SET museumId = ?, duration = ?, price = ?, start = ?, name = ? WHERE id = ?";
 	private static final String SQL_DELETE_TOUR = "DELETE FROM TOUR WHERE id = ?";
-	private static final String SQL_DELETE_ARTIFACTS = "DELETE FROM ARTIFACT WHERE tourId = ?";
-	private static final String SQL_DELETE_TICKETS = "DELETE FROM TICKET WHERE tourId = ?";
+	private static final String SQL_DELETE_TICKETS = "DELETE FROM TRANSACTION WHERE tourId = ?";
 	
 	public static ArrayList<TourEntity> selectAll(){
 		ArrayList<TourEntity> retVal = new ArrayList<TourEntity>();
@@ -49,10 +48,9 @@ public class TourService {
 		Object values[] = { tourId };
 		try {
 			connection = connectionPool.checkOut();
-			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection, SQL_DELETE_ARTIFACTS, false, values);
-			int affectedRows = pstmt.executeUpdate();
 			ArtifactService.deleteExistingArtifactsForTour(tourId);
-			pstmt = ServiceUtil.prepareStatement(connection, SQL_DELETE_TICKETS, false, values);
+			PreparedStatement pstmt = ServiceUtil.prepareStatement(connection, SQL_DELETE_TICKETS, false, values);
+			int affectedRows = pstmt.executeUpdate();
 			affectedRows += pstmt.executeUpdate();
 			pstmt = ServiceUtil.prepareStatement(connection, SQL_DELETE_TOUR, false, values);
 			affectedRows += pstmt.executeUpdate();
@@ -62,6 +60,7 @@ public class TourService {
 				retVal = true;
 			pstmt.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
 			retVal = false;
 		} finally {
 			connectionPool.checkIn(connection);

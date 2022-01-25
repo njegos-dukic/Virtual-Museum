@@ -2,6 +2,8 @@ package org.unibl.etf.virtualmuseum.beans;
 
 import java.io.Serializable;
 
+import org.unibl.etf.virtualmuseum.services.UserService;
+
 public class UserBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -109,7 +111,7 @@ public class UserBean implements Serializable {
 	}
 	
 	public boolean login() {
-		if(username.contains("etf") && password.equals("student"))
+		if(UserService.loginByUsernamePasswordOrAdminToken(this))
 			loggedIn = true;
 		else 
 			loggedIn = false;

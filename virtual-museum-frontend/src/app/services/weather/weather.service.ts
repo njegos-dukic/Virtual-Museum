@@ -1,13 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpBackend } from '@angular/common/http'
 import { Observable } from 'rxjs';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'clientId': 'username',
-    'clientPassword': 'password'
-  })
-}
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +9,11 @@ export class WeatherService {
 
   private countriesNowAPI = 'https://countriesnow.space/api/v0.1/countries/cities';
 
-  constructor(private http: HttpClient) { }
+  private http!: HttpClient;
+  
+  constructor(private httpBackend: HttpBackend) {
+    this.http = new HttpClient(httpBackend);
+   }
 
   private getCitiesForCountry(country: string): Observable<any> {
     return this.http.post<any>(this.countriesNowAPI, { "country": country });

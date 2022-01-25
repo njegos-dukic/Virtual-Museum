@@ -35,7 +35,6 @@ public class Controller extends HttpServlet {
 		if ("login".equals(action)) {
 			if (cardNumber != null && cvv != null) {
 				if (userBean.login(cardNumber, cvv)) {
-					System.out.println("POSTAVLJANJE U SESIJU: " + userBean.getCard().getCardNumber() + " : " + userBean.getCard().getIsEnabled());
 					session.setAttribute("userBean", userBean);
 					address = "/WEB-INF/jsp/Card.jsp";
 				}
@@ -43,11 +42,9 @@ public class Controller extends HttpServlet {
 		}
 		
 		else if ("toggle-enabled".equals(action)) {
-			System.out.println("TOGGLE ENABLED");
 			userBean = (UserBean) session.getAttribute("userBean");
 			if (userBean != null) {
 				if (userBean.isValidated()) {
-					System.out.println("VALIDATED ENABLED");
 					String enab = request.getParameter("enab");
 					Boolean enabled = "1".equals(enab) ? true : false;
 					CardEntity card = userBean.getCard();

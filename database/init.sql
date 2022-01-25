@@ -61,7 +61,8 @@ CREATE TABLE IF NOT EXISTS `VirtualMuseum`.`USER` (
   `firstName` VARCHAR(50) NOT NULL,
   `lastName` VARCHAR(50) NOT NULL,
   `email` VARCHAR(128) NOT NULL,
-  `isAdmin` TINYINT NOT NULL,
+  `isLoggedIn` TINYINT NOT NULL DEFAULT 0,
+  `isAdmin` TINYINT NOT NULL DEFAULT 0,
   `adminToken` VARCHAR(256) NULL,
   `isApproved` TINYINT NOT NULL DEFAULT 0,
   `isBlocked` TINYINT NOT NULL DEFAULT 0,
@@ -138,6 +139,7 @@ CREATE TABLE IF NOT EXISTS `VirtualMuseum`.`TRANSACTION` (
   `tourId` INT NOT NULL,
   `amount` DECIMAL(10,2) NOT NULL,
   `isSuccess` TINYINT NOT NULL,
+  `transactionInfo` VARCHAR(128) NULL,
   `ticketNumber` VARCHAR(256) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_TRANSACTION_TOUR1_idx` (`tourId` ASC) VISIBLE,
@@ -152,6 +154,18 @@ CREATE TABLE IF NOT EXISTS `VirtualMuseum`.`TRANSACTION` (
     REFERENCES `VirtualMuseum`.`CARD_USER` (`userId` , `cardNumber`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `VirtualMuseum`.`LOGS`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `VirtualMuseum`.`LOGS` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(45) NOT NULL,
+  `info` VARCHAR(256) NOT NULL,
+  `dateTime` DATETIME NOT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 

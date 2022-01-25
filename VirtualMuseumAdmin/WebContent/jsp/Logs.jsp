@@ -1,10 +1,13 @@
 <%@ page import="org.unibl.etf.virtualmuseum.beans.UserBean"%>
+<%@ page import="org.unibl.etf.virtualmuseum.services.ReportService"%>
+<%@ page import="org.unibl.etf.virtualmuseum.entities.LogEntity"%>
 <%@ page import="java.util.stream.Stream"%>
 <%@ page import="java.util.stream.Collectors"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.Base64" %>
 <%@ page import="java.io.File"%>
 <%@ page import="java.nio.file.Paths"%>
+<%@ page import="java.nio.charset.StandardCharsets"%>
 <%@ page import="java.nio.file.Path"%>
 <%@ page import="java.nio.file.Files"%>
 <%@ page import="java.util.Date"%>
@@ -101,25 +104,23 @@
 			<hr>
 			<hr>
 			<%
-				try (Stream<Path> paths = Files.walk(Paths.get("C:\\Users\\njego\\Desktop\\IP\\projektni-zadatak-2022\\VirtualMuseumAdmin\\WebContent\\WEB-INF\\logs"))) {
-				    List<File> files = paths 
-					        				.filter(Files::isRegularFile)
-					        				.map(f -> new File(f.toString()))
-					        				.collect(Collectors.toList());
-			
-				    for (File file : files) {
-				    	byte[] fileContent = FileUtils.readFileToByteArray(file);
-						String encodedString = Base64.getEncoder().encodeToString(fileContent);
-					%>
-							<div style="display: flex; align-items: center; justify-content: center;">
-								<a href="DownloadFile.jsp?log=<%= file.getName() %>" target="_blank"><%= file.getName() %></a>
-							</div>
-							<hr>
-							<hr>
-			
-
-					<% }
-				    } catch (Exception e) { e.printStackTrace(); } %>
+				File logFile = new File("C:\\Users\\njego\\Desktop\\IP\\projektni-zadatak-2022\\VirtualMuseumAdmin\\WebContent\\WEB-INF\\logs\\log.txt");
+				if (logFile.exists()) {
+					try {
+		                Files.delete(Path.of(logFile.getAbsolutePath()));
+		            } catch (Exception e) {
+		                e.printStackTrace();
+		            }
+				}
+				if (logFile.createNewFile()) {
+					Files.write(Path.of(logFile.getAbsolutePath()), ReportService.selectAllLogs(), StandardCharsets.UTF_8);
+				}
+			%>
+				<div style="display: flex; align-items: center; justify-content: center;">
+					<a href="DownloadFile.jsp?log=log.txt" target="_blank">DOWNLOAD LOG</a>
+				</div>
+				<hr>
+				<hr>
 		</div>
 	</body>
 </html>

@@ -1,0 +1,256 @@
+[LOGIN] at 2022-01-25 15:11:20 -- user logged in with password: user
+[LOGIN] at 2022-01-25 15:11:20 -- user logged in with password: user
+[LOGIN] at 2022-01-25 15:11:20 -- user logged in with password: user
+[LOGIN] at 2022-01-25 15:11:20 -- user logged in with password: user
+[LOGIN] at 2022-01-25 14:11:20 -- user logged in with password: user
+[LOGIN] at 2022-01-25 14:11:20 -- user logged in with password: user
+[LOGIN] at 2022-01-25 14:11:19 -- user logged in with password: user
+[LOGIN] at 2022-01-25 14:11:19 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 14:03:38 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:37 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:37 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:37 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:37 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:37 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:37 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:37 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:37 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:36 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:36 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:36 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:36 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:36 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:36 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGIN-TRY] at 2022-01-25 14:03:35 -- asl;kf'; tries to log in with password: 'askf'7
+[LOGOUT] at 2022-01-25 14:03:33 -- vanjavanjavanja1 logs out
+[LOGIN] at 2022-01-25 14:03:18 -- vanjavanjavanja1 logged in with password: Vanjavanjavanja1
+[LOGIN-TRY] at 2022-01-25 14:03:17 -- vanjavanjavanja1 tries to log in with password: Vanjavanjavanja1
+[LOGIN] at 2022-01-25 14:03:17 -- vanjavanjavanja1 logged in with password: Vanjavanjavanja1
+[LOGIN-TRY] at 2022-01-25 14:03:17 -- vanjavanjavanja1 tries to log in with password: Vanjavanjavanja1
+[LOGIN-TRY] at 2022-01-25 14:03:16 -- vanjavanjavanja tries to log in with password: Vanjavanjavanja1
+[LOGOUT] at 2022-01-25 14:03:11 -- vanjavanjavanja logs out
+[LOGIN-TRY] at 2022-01-25 14:02:57 -- vanjavanjavanja tries to log in with password: Vanjavanjavanja1
+[LOGIN] at 2022-01-25 14:02:57 -- vanjavanjavanja logged in with password: Vanjavanjavanja1
+[LOGIN-TRY] at 2022-01-25 14:02:57 -- vanjavanjavanja tries to log in with password: Vanjavanjavanja1
+[LOGIN] at 2022-01-25 14:02:57 -- vanjavanjavanja logged in with password: Vanjavanjavanja1
+[LOGIN-TRY] at 2022-01-25 14:02:52 -- vanjavanjavanja tries to log in with password: Vanjavanjavanja1
+[REGISTRATION] at 2022-01-25 14:02:45 -- Registration: RegistrationDTO(firstName=Vanja, lastName=Novakovic, userName=vanjavanjavanja, email=njegos.dukic@student.etf.unibl.org, password=Vanjavanjavanja1)
+[LOGIN-TRY] at 2022-01-25 14:02:45 -- vanjavanjavanja tries to log in with password: Vanjavanjavanja1
+[LOGOUT] at 2022-01-25 14:01:46 -- user logs out
+[LOGIN-TRY] at 2022-01-25 14:01:44 -- user tries to log in with password: nK4HvkRwyFm8RfH1
+[LOGIN] at 2022-01-25 14:01:44 -- user logged in with password: nK4HvkRwyFm8RfH1
+[LOGIN-TRY] at 2022-01-25 14:01:44 -- user tries to log in with password: nK4HvkRwyFm8RfH1
+[LOGIN] at 2022-01-25 14:01:44 -- user logged in with password: nK4HvkRwyFm8RfH1
+[LOGIN-TRY] at 2022-01-25 14:01:29 -- user tries to log in with password: user
+[LOGOUT] at 2022-01-25 14:01:27 -- user logs out
+[LOGIN-TRY] at 2022-01-25 14:01:12 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 14:01:12 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 14:01:12 -- user tries to log in with password: nK4HvkRwyFm8RfH1
+[LOGIN] at 2022-01-25 14:01:12 -- user logged in with password: nK4HvkRwyFm8RfH1
+[LOGIN-TRY] at 2022-01-25 14:00:57 -- user tries to log in with password: user
+[LOGOUT] at 2022-01-25 14:00:54 -- user logs out
+[LOGIN-TRY] at 2022-01-25 14:00:23 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 14:00:23 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 14:00:23 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 14:00:23 -- user logged in with password: user
+[LOGOUT] at 2022-01-25 14:00:10 -- user logs out
+[ARTIFACTS] at 2022-01-25 13:59:56 -- user tries to access artifacts of tour: 6 with ticket: xqXJ1PVzCxZPm2Qx0eaOjxaLqubq0KeK9ehEPWy9XgvS3IY9tNYRYrkW9QnMopPrglbWoUkPTOBgk59jWByNiP47su3nbYdZChCq4Zx0bIjjB1C53YnBcS5oiG6gAIPX and username/password: user/user
+[LOGIN-TRY] at 2022-01-25 13:59:51 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 13:59:51 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 13:59:51 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 13:59:51 -- user logged in with password: user
+[LOGOUT] at 2022-01-25 13:59:49 -- admin logs out
+[ARTIFACTS] at 2022-01-25 13:59:46 -- admin tries to access artifacts of tour: 6 with ticket: xqXJ1PVzCxZPm2Qx0eaOjxaLqubq0KeK9ehEPWy9XgvS3IY9tNYRYrkW9QnMopPrglbWoUkPTOBgk59jWByNiP47su3nbYdZChCq4Zx0bIjjB1C53YnBcS5oiG6gAIPX and username/password: admin/admin
+[LOGIN-TRY] at 2022-01-25 13:57:10 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 13:57:10 -- admin logged in with password: admin
+[LOGIN-TRY] at 2022-01-25 13:57:10 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 13:57:10 -- admin logged in with password: admin
+[LOGOUT] at 2022-01-25 13:57:08 -- admin logs out
+[LOGIN-TRY] at 2022-01-25 13:56:42 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 13:56:42 -- admin logged in with password: admin
+[LOGIN-TRY] at 2022-01-25 13:56:42 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 13:56:42 -- admin logged in with password: admin
+[LOGOUT] at 2022-01-25 13:56:40 -- user logs out
+[ARTIFACTS] at 2022-01-25 13:56:26 -- user tries to access artifacts of tour: 6 with ticket: xqXJ1PVzCxZPm2Qx0eaOjxaLqubq0KeK9ehEPWy9XgvS3IY9tNYRYrkW9QnMopPrglbWoUkPTOBgk59jWByNiP47su3nbYdZChCq4Zx0bIjjB1C53YnBcS5oiG6gAIPX and username/password: user/user
+[ARTIFACTS] at 2022-01-25 13:56:20 -- user tries to access artifacts of tour: 6 with ticket: xqXJ1PVzCxZPm2Qx0eaOjxaLqubq0KeK9ehEPWy9XgvS3IY9tNYRYrkW9QnMopPrglbWoUkPTOBgk59jWByNiP47su3nbYdZChCq4Zx0bIjjB1C53YnBcS5oiG6gAIPX1 and username/password: user/user
+[PURCHASE] at 2022-01-25 13:54:28 -- user tries to purchase card with following details: PurchasePostDTO(userId=2, tourId=3, email=njegos.dukic.998@gmail.com, cardNumber=1111222233334444, firstName=njegos, lastName=dukic, cardType=VISA, expirationDate=1222, cvv=123)
+[PURCHASE] at 2022-01-25 13:54:18 -- user tries to purchase card with following details: PurchasePostDTO(userId=2, tourId=3, email=njegos.dukic.998@gmail.com, cardNumber=1111222233334444, firstName=njegos, lastName=dukic, cardType=VISA, expirationDate=1222, cvv=123)
+[LOGIN-TRY] at 2022-01-25 13:51:34 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 13:51:34 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 13:51:34 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 13:51:34 -- user logged in with password: user
+[LOGOUT] at 2022-01-25 13:50:21 -- user logs out
+[ARTIFACTS] at 2022-01-25 13:34:42 -- user tries to access artifacts of tour: 6 with ticket: xqXJ1PVzCxZPm2Qx0eaOjxaLqubq0KeK9ehEPWy9XgvS3IY9tNYRYrkW9QnMopPrglbWoUkPTOBgk59jWByNiP47su3nbYdZChCq4Zx0bIjjB1C53YnBcS5oiG6gAIPX and username/password: user/user
+[LOGIN-TRY] at 2022-01-25 13:34:36 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 13:34:36 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 13:34:36 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 13:34:36 -- user logged in with password: user
+[LOGOUT] at 2022-01-25 13:34:33 -- admin logs out
+[ARTIFACTS] at 2022-01-25 13:34:31 -- admin tries to access artifacts of tour: 6 with ticket: xqXJ1PVzCxZPm2Qx0eaOjxaLqubq0KeK9ehEPWy9XgvS3IY9tNYRYrkW9QnMopPrglbWoUkPTOBgk59jWByNiP47su3nbYdZChCq4Zx0bIjjB1C53YnBcS5oiG6gAIPX and username/password: admin/admin
+[LOGIN-TRY] at 2022-01-25 13:33:02 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 13:33:02 -- admin logged in with password: admin
+[LOGIN-TRY] at 2022-01-25 13:33:02 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 13:33:02 -- admin logged in with password: admin
+[LOGOUT] at 2022-01-25 13:32:59 -- user logs out
+[ARTIFACTS] at 2022-01-25 13:32:41 -- user tries to access artifacts of tour: 6 with ticket: xqXJ1PVzCxZPm2Qx0eaOjxaLqubq0KeK9ehEPWy9XgvS3IY9tNYRYrkW9QnMopPrglbWoUkPTOBgk59jWByNiP47su3nbYdZChCq4Zx0bIjjB1C53YnBcS5oiG6gAIPX and username/password: user/user
+[ARTIFACTS] at 2022-01-25 13:32:39 -- user tries to access artifacts of tour: 6 with ticket: xqXJ1PVzCxZPm2Qx0eaOjxaLqubq0KeK9ehEPWy9XgvS3IY9tNYRYrkW9QnMopPrglbWoUkPTOBgk59jWByNiP47su3nbYdZChCq4Zx0bIjjB1C53YnBcS5oiG6gAIPX1 and username/password: user/user
+[LOGIN-TRY] at 2022-01-25 13:32:31 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 13:32:31 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 13:32:31 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 13:32:31 -- user logged in with password: user
+[LOGOUT] at 2022-01-25 13:32:29 -- admin logs out
+[ARTIFACTS] at 2022-01-25 13:32:17 -- admin tries to access artifacts of tour: 6 with ticket: xqXJ1PVzCxZPm2Qx0eaOjxaLqubq0KeK9ehEPWy9XgvS3IY9tNYRYrkW9QnMopPrglbWoUkPTOBgk59jWByNiP47su3nbYdZChCq4Zx0bIjjB1C53YnBcS5oiG6gAIPX and username/password: admin/admin
+[ARTIFACTS] at 2022-01-25 13:32:17 -- admin tries to access artifacts of tour: 6 with ticket: xqXJ1PVzCxZPm2Qx0eaOjxaLqubq0KeK9ehEPWy9XgvS3IY9tNYRYrkW9QnMopPrglbWoUkPTOBgk59jWByNiP47su3nbYdZChCq4Zx0bIjjB1C53YnBcS5oiG6gAIPX and username/password: admin/admin
+[ARTIFACTS] at 2022-01-25 13:32:16 -- admin tries to access artifacts of tour: 6 with ticket: xqXJ1PVzCxZPm2Qx0eaOjxaLqubq0KeK9ehEPWy9XgvS3IY9tNYRYrkW9QnMopPrglbWoUkPTOBgk59jWByNiP47su3nbYdZChCq4Zx0bIjjB1C53YnBcS5oiG6gAIPX and username/password: admin/admin
+[ARTIFACTS] at 2022-01-25 13:32:14 -- admin tries to access artifacts of tour: 6 with ticket: xqXJ1PVzCxZPm2Qx0eaOjxaLqubq0KeK9ehEPWy9XgvS3IY9tNYRYrkW9QnMopPrglbWoUkPTOBgk59jWByNiP47su3nbYdZChCq4Zx0bIjjB1C53YnBcS5oiG6gAIPX and username/password: admin/admin
+[ARTIFACTS] at 2022-01-25 13:32:11 -- admin tries to access artifacts of tour: 6 with ticket: xqXJ1PVzCxZPm2Qx0eaOjxaLqubq0KeK9ehEPWy9XgvS3IY9tNYRYrkW9QnMopPrglbWoUkPTOBgk59jWByNiP47su3nbYdZChCq4Zx0bIjjB1C53YnBcS5oiG6gAIPX and username/password: admin/admin
+[ARTIFACTS] at 2022-01-25 13:32:09 -- admin tries to access artifacts of tour: 6 with ticket: xqXJ1PVzCxZPm2Qx0eaOjxaLqubq0KeK9ehEPWy9XgvS3IY9tNYRYrkW9QnMopPrglbWoUkPTOBgk59jWByNiP47su3nbYdZChCq4Zx0bIjjB1C53YnBcS5oiG6gAIPX1 and username/password: admin/admin
+[LOGIN-TRY] at 2022-01-25 13:30:31 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 13:30:31 -- admin logged in with password: admin
+[LOGIN-TRY] at 2022-01-25 13:30:31 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 13:30:31 -- admin logged in with password: admin
+[LOGIN-TRY] at 2022-01-25 13:29:36 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 13:29:36 -- admin logged in with password: admin
+[LOGIN-TRY] at 2022-01-25 13:29:36 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 13:29:36 -- admin logged in with password: admin
+[LOGIN] at 2022-01-25 13:11:19 -- user logged in with password: user
+[LOGIN] at 2022-01-25 13:11:19 -- user logged in with password: user
+[LOGIN] at 2022-01-25 13:11:19 -- user logged in with password: user
+[LOGIN] at 2022-01-25 13:11:19 -- user logged in with password: user
+[LOGOUT] at 2022-01-25 13:06:20 -- user logs out
+[PURCHASE] at 2022-01-25 13:04:29 -- user tries to purchase card with following details: PurchasePostDTO(userId=2, tourId=6, email=njegos.dukic.998@gmail.com, cardNumber=1111222233334444, firstName=njegos, lastName=dukic, cardType=VISA, expirationDate=1222, cvv=123)
+[LOGIN-TRY] at 2022-01-25 13:04:01 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 13:04:01 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 13:04:00 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 13:04:00 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 13:02:53 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 13:02:53 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 13:02:53 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 13:02:53 -- user logged in with password: user
+[LOGOUT] at 2022-01-25 13:02:03 -- user logs out
+[LOGIN-TRY] at 2022-01-25 12:59:51 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 12:59:51 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 12:59:51 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 12:59:51 -- user logged in with password: user
+[LOGIN] at 2022-01-25 12:57:22 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 12:57:22 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 12:57:22 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 12:57:21 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 12:16:19 -- user logged in with password: user
+[LOGIN] at 2022-01-25 12:01:19 -- user logged in with password: user
+[LOGIN] at 2022-01-25 11:54:18 -- user logged in with password: user
+[LOGIN] at 2022-01-25 11:51:18 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 11:41:30 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:41:30 -- admin logged in with password: admin
+[LOGIN-TRY] at 2022-01-25 11:40:41 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:40:41 -- admin logged in with password: admin
+[LOGIN-TRY] at 2022-01-25 11:40:41 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:40:41 -- admin logged in with password: admin
+[LOGOUT] at 2022-01-25 11:40:38 -- admin logs out
+[LOGIN-TRY] at 2022-01-25 11:32:38 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:32:38 -- admin logged in with password: admin
+[LOGIN-TRY] at 2022-01-25 11:32:38 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:32:38 -- admin logged in with password: admin
+[LOGOUT] at 2022-01-25 11:32:36 -- admin logs out
+[LOGIN-TRY] at 2022-01-25 11:32:23 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:32:23 -- admin logged in with password: admin
+[LOGIN-TRY] at 2022-01-25 11:32:23 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:32:23 -- admin logged in with password: admin
+[LOGOUT] at 2022-01-25 11:32:20 -- admin logs out
+[LOGIN-TRY] at 2022-01-25 11:32:18 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:32:18 -- admin logged in with password: admin
+[LOGIN-TRY] at 2022-01-25 11:32:18 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:32:18 -- admin logged in with password: admin
+[LOGOUT] at 2022-01-25 11:32:17 -- admin logs out
+[LOGIN-TRY] at 2022-01-25 11:32:15 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:32:15 -- admin logged in with password: admin
+[LOGIN-TRY] at 2022-01-25 11:32:15 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:32:15 -- admin logged in with password: admin
+[LOGOUT] at 2022-01-25 11:32:13 -- admin logs out
+[LOGIN-TRY] at 2022-01-25 11:32:12 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:32:12 -- admin logged in with password: admin
+[LOGIN-TRY] at 2022-01-25 11:32:12 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:32:12 -- admin logged in with password: admin
+[LOGOUT] at 2022-01-25 11:32:10 -- admin logs out
+[LOGIN-TRY] at 2022-01-25 11:30:02 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:30:02 -- admin logged in with password: admin
+[LOGIN-TRY] at 2022-01-25 11:30:02 -- admin tries to log in with password: admin
+[LOGIN] at 2022-01-25 11:30:02 -- admin logged in with password: admin
+[LOGOUT] at 2022-01-25 11:29:53 -- user logs out
+[LOGIN] at 2022-01-25 11:25:18 -- user logged in with password: user
+[LOGIN] at 2022-01-25 11:17:18 -- user logged in with password: user
+[LOGIN] at 2022-01-25 11:11:18 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 11:10:16 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 11:10:16 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 11:10:16 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 11:10:16 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 11:10:14 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:14 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:14 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:14 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:14 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:14 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:14 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:13 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:13 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:13 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:13 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:13 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:13 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:13 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:12 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:12 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:11 -- njego tries to log in with password: pas
+[LOGIN-TRY] at 2022-01-25 11:10:10 -- njego tries to log in with password: pas
+[LOGIN] at 2022-01-25 11:09:18 -- user logged in with password: user
+[LOGOUT] at 2022-01-25 11:04:05 -- admin logs out
+[LOGIN] at 2022-01-25 10:41:17 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 10:40:03 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 10:40:03 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 10:40:03 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 10:40:03 -- user logged in with password: user
+[LOGOUT] at 2022-01-25 10:39:59 -- user logs out
+[LOGIN-TRY] at 2022-01-25 10:39:35 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 10:39:35 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 10:39:35 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 10:39:35 -- user logged in with password: user
+[LOGOUT] at 2022-01-25 10:39:33 -- user logs out
+[LOGIN] at 2022-01-25 10:25:17 -- user logged in with password: user
+[LOGIN] at 2022-01-25 10:21:17 -- user logged in with password: user
+[LOGIN] at 2022-01-25 10:20:53 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 10:17:47 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 10:17:47 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 10:17:46 -- user tries to log in with password: user
+[LOGIN] at 2022-01-25 10:17:46 -- user logged in with password: user
+[LOGIN-TRY] at 2022-01-25 10:17:42 -- njego tries to log in with password: njego
+[LOGIN] at 2022-01-25 10:13:18 -- user logged in with password: user
+[LOGIN] at 2022-01-25 10:13:17 -- user logged in with password: user
+[LOGOUT] at 2022-01-25 10:07:00 -- admin logs out
+[LOGIN-TRY] at 2022-01-25 10:04:36 -- admin tries to log in with password: admin
+[LOGIN-TRY] at 2022-01-25 10:04:36 -- admin tries to log in with password: admin
+[LOGIN-TRY] at 2022-01-25 10:04:08 -- admin tries to log in with password: nevalidno
+[LOGIN-TRY] at 2022-01-25 10:04:03 -- admin tries to log in with password: admin
+[LOGIN-TRY] at 2022-01-25 10:04:03 -- admin tries to log in with password: admin
+[LOGOUT] at 2022-01-25 10:04:01 -- user logs out
+[LOGIN-TRY] at 2022-01-25 09:59:30 -- user tries to log in with password: user
+[LOGIN-TRY] at 2022-01-25 09:59:30 -- user tries to log in with password: user
+[LOGIN-TRY] at 2022-01-25 09:59:10 -- njego tries to log in with password: njego
+[LOGIN-TRY] at 2022-01-25 09:59:08 -- njego tries to log in with password: njego
+[LOGIN] at 2022-01-25 08:31:16 -- user logged in with password: user
+[LOGIN] at 2022-01-25 08:21:17 -- user logged in with password: user
+[LOGIN] at 2022-01-25 07:41:16 -- user logged in with password: user
+[LOGIN] at 2022-01-25 07:15:16 -- user logged in with password: user
+[LOGIN] at 2022-01-25 06:48:16 -- user logged in with password: user
+[LOGIN] at 2022-01-25 06:36:16 -- user logged in with password: user
+[LOGIN] at 2022-01-25 06:21:15 -- user logged in with password: user
+[LOGIN] at 2022-01-25 06:16:15 -- user logged in with password: user
+[LOGIN] at 2022-01-25 06:11:15 -- user logged in with password: user
+[LOGIN] at 2022-01-25 06:01:16 -- user logged in with password: user
+[LOGIN] at 2022-01-25 05:21:46 -- user logged in with password: user
+[LOGIN] at 2022-01-25 05:11:14 -- user logged in with password: user
+[LOGIN] at 2022-01-25 04:44:36 -- admin logged in with password: admin
+[LOGIN] at 2022-01-25 04:44:36 -- admin logged in with password: admin
+[LOGIN] at 2022-01-25 02:14:03 -- admin logged in with password: admin
+[LOGIN] at 2022-01-25 02:04:03 -- admin logged in with password: admin
+[LOGIN] at 2022-01-25 01:34:30 -- user logged in with password: user
+[LOGIN] at 2022-01-25 01:15:30 -- user logged in with password: user

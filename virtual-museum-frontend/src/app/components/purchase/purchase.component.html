@@ -1,49 +1,68 @@
 <ng-container *ngIf="tour"> 
   <main class="form-signin">
     <form data-bitwarden-watching="1">
-      <h1 class="h3 mb-3 fw-normal">Enter card info</h1>
+      <h3 class="h3 mb-3 fw-normal">Enter card info</h3>
+      <hr>
       <div class="form-floating">
-        <input type="text" class="form-control" id="floatingFirstName" placeholder="First name">
+        <input type="text" required class="form-control" id="floatingFirstName" [(ngModel)]="firstName" [ngModelOptions]="{standalone: true}" placeholder="First name">
         <label for="floatingFirstName">First name</label>
       </div>
+      <hr>
       <div class="form-floating">
-        <input type="text" class="form-control" id="floatingLastName" placeholder="Last name">
+        <input type="text" required class="form-control" id="floatingLastName" [(ngModel)]="lastName" [ngModelOptions]="{standalone: true}" placeholder="Last name">
         <label for="floatingLastName">Last name</label>
       </div>
+      <hr>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="cardRadio" id="visaRadio" value="VISA">
+        <input class="form-check-input" required type="radio" name="cardRadio" [(ngModel)]="cardType" [ngModelOptions]="{standalone: true}" id="visaRadio" value="VISA">
         <label class="form-check-label" for="visaRadio">
           VISA
         </label>
       </div>
+      <hr>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="cardRadio" id="masterRadio" value="MASTERCARD">
+        <input class="form-check-input" required type="radio" name="cardRadio" [(ngModel)]="cardType" [ngModelOptions]="{standalone: true}" id="masterRadio" value="MASTERCARD">
         <label class="form-check-label" for="masterRadio">
           MASTERCARD
         </label>
       </div>
+      <hr>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="cardRadio" id="amexRadio" value="AMERICAN EXPRESS">
+        <input class="form-check-input" required type="radio" name="cardRadio" [(ngModel)]="cardType" [ngModelOptions]="{standalone: true}" id="amexRadio" value="AMERICAN EXPRESS">
         <label class="form-check-label" for="amexRadio">
           AMERICAN EXPRESS
         </label>
       </div>
+      <hr>
       <div class="form-floating">
-        <input type="text" class="form-control" id="floatingCardNumber" placeholder="Card number">
+        <input type="text" class="form-control" required id="floatingCardNumber" [(ngModel)]="cardNumber" [ngModelOptions]="{standalone: true}" placeholder="Card number">
         <label for="floatingCardNumber">Card number</label>
       </div>
+      <hr>
       <div class="form-floating">
-        <input type="text" class="form-control" id="floatingCVV" placeholder="CVV">
+        <input type="text" required class="form-control" id="floatingExpiration" [(ngModel)]="expirationDate" [ngModelOptions]="{standalone: true}" placeholder="CVV">
+        <label for="floatingExpiration">Expiration date (MMYY)</label>
+      </div>
+      <hr>
+      <div class="form-floating">
+        <input type="text" required class="form-control" id="floatingCVV" [(ngModel)]="cvv" [ngModelOptions]="{standalone: true}" placeholder="CVV">
         <label for="floatingCVV">CVV</label>
       </div>
+      <hr>
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input type="email" required class="form-control" id="floatingInput" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="name@example.com">
         <label for="floatingInput">Email</label>
       </div>
+      <hr>
       <div class="form-floating">
           <div><b>Price: {{ tour.price }} EUR</b></div>
       </div>
-      <button class="w-100 btn btn-lg btn-primary top-mrgn-10" type="submit">Purchase</button>
+      <hr>
+      <p style="color: red;">{{ error }}</p>
+      <p style="color: green;">{{ success }}</p>
+
+      <hr>
+      <button class="w-100 btn btn-lg btn-primary top-mrgn-10" (click)="purchase()" type="submit">Purchase</button>
     </form>
   </main>
 </ng-container>

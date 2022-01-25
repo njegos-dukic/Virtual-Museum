@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RootObject, Item, Enclosure, Feed } from '../../interfaces/huffPostRSS';
 import { RssService } from '../../services/rss/rss.service';
-import * as xml2js from 'xml2js';
+import { LoginService } from 'src/app/services/login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +12,16 @@ import * as xml2js from 'xml2js';
 export class HomeComponent implements OnInit {
 
   rss!: RootObject;
-  items: Item[] = [];
 
-  constructor(private rssService: RssService) { }
+  constructor(private rssService: RssService, private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
-    this.rssService.getNews().subscribe(root => {
-      console.log("ROOT " + root);
-     // xml2js.parseString(root, (err: any, res: RootObject) => {
-       // this.rss = res;
-      //}); 
-    });
+    let user = JSON.parse(localStorage.getItem('user') || '{}');
+    let username = user.username;
+    let password = user.password;
+    if (username === null || password === null)
+      this.router.navigate(['login']);
+    this.loginService.login(username, password).subscribe(result => {}, err => this.router.navigate(['login']));
+    this.rssService.getNews().subscribe(news => this.rss = news);
   }
 }

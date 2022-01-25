@@ -6,4 +6,6 @@ import org.unibl.etf.virtualmuseumapi.model.entities.TransactionEntity;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<TransactionEntity, Integer> {
+
+    TransactionEntity getTransactionEntityByTicketNumberAndTourIdAndUserId(String ticketNumber, Integer tourId, Integer userId);
 }

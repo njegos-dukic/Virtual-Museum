@@ -3,6 +3,7 @@ package org.unibl.etf.virtualmuseumapi.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.unibl.etf.virtualmuseumapi.config.ModelMapperConfig;
+import org.unibl.etf.virtualmuseumapi.exceptions.BadRequestException;
 import org.unibl.etf.virtualmuseumapi.exceptions.NotFoundException;
 import org.unibl.etf.virtualmuseumapi.model.dto.TourInfoDTO;
 import org.unibl.etf.virtualmuseumapi.model.entities.TourEntity;
