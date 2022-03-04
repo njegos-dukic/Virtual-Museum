@@ -7,6 +7,7 @@
   - JSP M2 Virtual Bank Simulator.
 
 - Used:
+  - TypeScript
   - AJAX
   - Worked with RSS
   - Angular Guards
